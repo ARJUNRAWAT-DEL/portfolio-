@@ -75,7 +75,7 @@ export default function Contact() {
         </h1>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto">
           Have a project in mind or just want to chat about technology?
-          I'd love to hear from you! Let's create something amazing together.
+          I&apos;d love to hear from you! Let&apos;s create something amazing together.
         </p>
         <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
       </motion.div>
@@ -288,11 +288,11 @@ export default function Contact() {
         className="text-center space-y-6"
       >
         <h2 className="text-2xl font-bold text-gray-100">
-          Let's Build Something Amazing Together! 🚀
+          Let&apos;s Build Something Amazing Together! 🚀
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto">
           Whether you have a project in mind, need technical consultation,
-          or just want to discuss the latest in tech - I'm always excited to connect!
+          or just want to discuss the latest in tech - I&apos;m always excited to connect!
         </p>
       </motion.div>
     </section>

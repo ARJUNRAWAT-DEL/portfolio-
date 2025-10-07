@@ -64,7 +64,7 @@ export default function About() {
               👨‍💻
             </motion.div>
             <h2 className="text-3xl font-bold text-gray-100">
-              Hi, I'm Arjun Rawat
+              Hi, I&apos;m Arjun Rawat
             </h2>
             <p className="text-xl text-indigo-400 font-semibold">
               Data Analyst with AI/ML & Software Development
@@ -78,7 +78,7 @@ export default function About() {
             className="space-y-4 text-gray-300 leading-relaxed"
           >
             <p>
-              I'm a passionate Data Analyst and Software Developer with expertise in AI/ML,
+              I&apos;m a passionate Data Analyst and Software Developer with expertise in AI/ML,
               currently studying Information Technology at Vilnius Gediminas Technical University.
               My journey combines data science, machine learning, and full-stack development
               to create innovative solutions.
@@ -86,7 +86,7 @@ export default function About() {
             <p>
               With experience at leading companies like YARA FERTILIZERS INDIA and Accenture,
               I specialize in developing AI-powered applications, optimizing data workflows,
-              and building scalable cloud solutions. I'm passionate about leveraging technology
+              and building scalable cloud solutions. I&apos;m passionate about leveraging technology
               to solve complex problems and drive business value.
             </p>
           </motion.div>

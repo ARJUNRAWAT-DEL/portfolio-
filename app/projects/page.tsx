@@ -74,7 +74,7 @@ export default function Projects() {
           My Projects
         </h1>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-          Here are some of the projects I've built, showcasing my skills in data analysis,
+          Here are some of the projects I&apos;ve built, showcasing my skills in data analysis,
           AI/ML, big data engineering, and software development.
         </p>
       </motion.div>

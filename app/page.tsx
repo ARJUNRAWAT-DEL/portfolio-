@@ -118,7 +118,7 @@ export default function HomePage() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="text-5xl lg:text-6xl font-bold"
         >
-          Hi, I'm{" "}
+          Hi, I&apos;m{" "}
           <motion.span
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
