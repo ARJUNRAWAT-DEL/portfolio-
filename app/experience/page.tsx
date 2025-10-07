@@ -5,7 +5,7 @@ const experiences = [
   {
     role: "IT Intern",
     company: "YARA FERTILIZERS INDIA Pvt. Ltd.",
-    period: "June 2024 - Present, On-Site",
+    period: "June 2024 - Sep 2024, On-Site",
     details: [
       "Developed and deployed an AI-powered document assistant using FastAPI, PostgreSQL, and NLP",
       "Achieved 40% improvement in document search efficiency by 25%",
@@ -31,7 +31,7 @@ const experiences = [
   {
     role: "Big Data Engineering Trainee",
     company: "Accenture Baltics",
-    period: "July 2024 - Oct 2024, Remote",
+    period: "Jan 2024 - Feb 2024, Remote",
     details: [
       "Built data pipelines and performed data analysis using SQL",
       "Worked with Google Cloud Platform (GCP) for data engineering and cloud security",
