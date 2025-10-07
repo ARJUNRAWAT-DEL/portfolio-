@@ -17,7 +17,7 @@ const experiences = [
   },
   {
     role: "Data Science Intern",
-    company: "Labmentrix",
+    company: "Labmentix",
     period: "July 2024 - Present, Remote",
     details: [
       "Learning and applying Machine Learning algorithms (supervised & unsupervised)",
@@ -44,7 +44,7 @@ const experiences = [
   {
     role: "Education",
     company: "Vilnius Gediminas Technical University",
-    period: "2022-2024, Vilnius, Lithuania",
+    period: "2022-2026, Vilnius, Lithuania",
     details: [
       "Information Technology specialization in software development",
       "Networking, Web Technologies, Network principles",
