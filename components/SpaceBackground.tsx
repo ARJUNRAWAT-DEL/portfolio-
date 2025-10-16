@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 interface Star {
   id: number;
@@ -25,6 +26,7 @@ export default function SpaceBackground() {
   const [stars, setStars] = useState<Star[]>([]);
   const [shootingStars, setShootingStars] = useState<ShootingStar[]>([]);
   const [isClient, setIsClient] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     setIsClient(true);
@@ -75,23 +77,37 @@ export default function SpaceBackground() {
 
   if (!isClient) return null;
 
+  const isDark = theme === 'dark';
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Cosmic Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-blue-900 to-black opacity-90" />
+      {/* Dynamic Background Gradient */}
+      <div className={`absolute inset-0 transition-all duration-1000 ${
+        isDark 
+          ? 'bg-gradient-to-b from-gray-900 via-blue-900 to-black opacity-90' 
+          : 'bg-gradient-to-b from-blue-50 via-indigo-100 to-blue-200 opacity-70'
+      }`} />
       
       {/* Nebula Effect */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-20" />
-        <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-blue-500 rounded-full blur-3xl opacity-15" />
-        <div className="absolute bottom-1/4 left-1/2 w-64 h-64 bg-indigo-500 rounded-full blur-3xl opacity-25" />
+      <div className={`absolute inset-0 transition-opacity duration-1000 ${isDark ? 'opacity-30' : 'opacity-20'}`}>
+        <div className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl transition-all duration-1000 ${
+          isDark ? 'bg-purple-500 opacity-20' : 'bg-purple-300 opacity-30'
+        }`} />
+        <div className={`absolute top-3/4 right-1/4 w-80 h-80 rounded-full blur-3xl transition-all duration-1000 ${
+          isDark ? 'bg-blue-500 opacity-15' : 'bg-blue-300 opacity-25'
+        }`} />
+        <div className={`absolute bottom-1/4 left-1/2 w-64 h-64 rounded-full blur-3xl transition-all duration-1000 ${
+          isDark ? 'bg-indigo-500 opacity-25' : 'bg-indigo-300 opacity-35'
+        }`} />
       </div>
 
       {/* Static Twinkling Stars */}
       {stars.map((star) => (
         <motion.div
           key={`star-${star.id}`}
-          className="absolute bg-white rounded-full"
+          className={`absolute rounded-full transition-colors duration-1000 ${
+            isDark ? 'bg-white' : 'bg-gray-700'
+          }`}
           style={{
             left: `${star.x}%`,
             top: `${star.y}%`,
@@ -134,8 +150,14 @@ export default function SpaceBackground() {
           }}
         >
           {/* Shooting star trail */}
-          <div className="w-px h-8 bg-gradient-to-b from-transparent via-white to-transparent transform rotate-45 origin-top" />
-          <div className="absolute top-0 w-2 h-2 bg-white rounded-full blur-sm" />
+          <div className={`w-px h-8 transform rotate-45 origin-top transition-all duration-1000 ${
+            isDark 
+              ? 'bg-gradient-to-b from-transparent via-white to-transparent' 
+              : 'bg-gradient-to-b from-transparent via-gray-600 to-transparent'
+          }`} />
+          <div className={`absolute top-0 w-2 h-2 rounded-full blur-sm transition-colors duration-1000 ${
+            isDark ? 'bg-white' : 'bg-gray-600'
+          }`} />
         </motion.div>
       ))}
 
@@ -143,7 +165,9 @@ export default function SpaceBackground() {
       {Array.from({ length: 15 }, (_, i) => (
         <motion.div
           key={`particle-${i}`}
-          className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-60"
+          className={`absolute w-1 h-1 rounded-full opacity-60 transition-colors duration-1000 ${
+            isDark ? 'bg-cyan-400' : 'bg-blue-500'
+          }`}
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -164,10 +188,14 @@ export default function SpaceBackground() {
 
       {/* Distant Galaxies */}
       <motion.div
-        className="absolute top-1/3 right-1/5 w-4 h-4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-sm opacity-40"
+        className={`absolute top-1/3 right-1/5 w-4 h-4 rounded-full blur-sm transition-all duration-1000 ${
+          isDark 
+            ? 'bg-gradient-to-r from-purple-400 to-pink-400 opacity-40' 
+            : 'bg-gradient-to-r from-purple-300 to-pink-300 opacity-60'
+        }`}
         animate={{
           scale: [1, 1.5, 1],
-          opacity: [0.4, 0.6, 0.4],
+          opacity: isDark ? [0.4, 0.6, 0.4] : [0.6, 0.8, 0.6],
         }}
         transition={{
           duration: 4,
@@ -177,10 +205,14 @@ export default function SpaceBackground() {
       />
       
       <motion.div
-        className="absolute bottom-1/3 left-1/6 w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full blur-sm opacity-50"
+        className={`absolute bottom-1/3 left-1/6 w-3 h-3 rounded-full blur-sm transition-all duration-1000 ${
+          isDark 
+            ? 'bg-gradient-to-r from-blue-400 to-cyan-400 opacity-50' 
+            : 'bg-gradient-to-r from-blue-300 to-cyan-300 opacity-70'
+        }`}
         animate={{
           scale: [1.2, 0.8, 1.2],
-          opacity: [0.5, 0.3, 0.5],
+          opacity: isDark ? [0.5, 0.3, 0.5] : [0.7, 0.5, 0.7],
         }}
         transition={{
           duration: 3,
