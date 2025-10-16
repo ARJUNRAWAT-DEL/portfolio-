@@ -1,8 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import ProjectCard from "../../components/ProjectCard";
 
 export default function Projects() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const projects = [
     {
       title: "INTELLIDOC - AI Document Intelligence",
@@ -61,6 +67,8 @@ export default function Projects() {
       }
     }
   };
+
+  if (!isClient) return <div className="min-h-screen" />;
 
   return (
     <section className="space-y-12 py-8">

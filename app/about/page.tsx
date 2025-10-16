@@ -1,7 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function About() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const skills = [
     { name: "Python", level: 95, color: "from-blue-500 to-cyan-500" },
     { name: "SQL/NoSQL", level: 90, color: "from-green-500 to-emerald-500" },
@@ -29,6 +35,8 @@ export default function About() {
       transition: { duration: 0.5 }
     }
   };
+
+  if (!isClient) return <div className="min-h-screen" />;
 
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-12 sm:space-y-16">

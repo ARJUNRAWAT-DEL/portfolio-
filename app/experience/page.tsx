@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const experiences = [
   {
@@ -57,6 +58,12 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -79,6 +86,8 @@ export default function Experience() {
       }
     }
   };
+
+  if (!isClient) return <div className="min-h-screen" />;
 
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-12 sm:space-y-16">

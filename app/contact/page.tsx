@@ -1,8 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Mail, Github, Linkedin, Send, MessageCircle, MapPin } from "lucide-react";
 
 export default function Contact() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const contactInfo = [
     {
       icon: Mail,
@@ -52,6 +58,8 @@ export default function Contact() {
       transition: { duration: 0.6 }
     }
   };
+
+  if (!isClient) return <div className="min-h-screen" />;
 
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-12 sm:space-y-16">
