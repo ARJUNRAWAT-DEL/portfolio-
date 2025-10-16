@@ -18,12 +18,16 @@ class ExtensionErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBo
   }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    // Check if error is from browser extension
+    // Check if error is from browser extension or geolocation
     if (error.message.includes('chrome-extension://') ||
         error.message.includes('getCurrentPosition') ||
         error.message.includes('read only property') ||
-        error.stack?.includes('chrome-extension://')) {
-      return { hasError: false }; // Ignore extension errors
+        error.message.includes('Geolocation') ||
+        error.message.includes('extendCurrentPosition') ||
+        error.message.includes('extendLocation') ||
+        error.stack?.includes('chrome-extension://') ||
+        error.stack?.includes('location.js')) {
+      return { hasError: false }; // Ignore extension/geolocation errors
     }
     return { hasError: true, error };
   }
@@ -32,7 +36,10 @@ class ExtensionErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBo
     // Log only non-extension errors
     if (!error.message.includes('chrome-extension://') &&
         !error.message.includes('getCurrentPosition') &&
-        !error.message.includes('read only property')) {
+        !error.message.includes('read only property') &&
+        !error.message.includes('Geolocation') &&
+        !error.message.includes('extendCurrentPosition') &&
+        !error.message.includes('extendLocation')) {
       console.error('Application error:', error, errorInfo);
     }
   }

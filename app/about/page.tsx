@@ -64,12 +64,25 @@ export default function About() {
         >
           <div className="space-y-4">
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-6xl"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="relative"
             >
-              👨‍💻
+              <div className="w-32 h-32 mx-auto lg:mx-0 rounded-full overflow-hidden border-4 border-gradient-to-r from-cyan-400 to-purple-400 shadow-2xl">
+                <img
+                  src="/arjun-profile.jpg"
+                  alt="Arjun Rawat"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to emoji if image doesn't load
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-6xl bg-gradient-to-br from-cyan-500 to-purple-500">👨‍💻</div>';
+                  }}
+                />
+              </div>
+              {/* Glowing effect */}
+              <div className="absolute inset-0 w-32 h-32 mx-auto lg:mx-0 rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 opacity-20 blur-lg animate-pulse"></div>
             </motion.div>
             <h2 className="text-3xl font-bold text-gray-100">
               Hi, I&apos;m Arjun Rawat

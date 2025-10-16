@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  // Suppress hydration warnings in development
+  reactStrictMode: false,
   // Add headers for better extension compatibility
   async headers() {
     return [

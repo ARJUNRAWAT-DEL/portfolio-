@@ -24,9 +24,24 @@ export default function HomePage() {
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
-          className="w-32 h-32 mx-auto bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl relative overflow-hidden border-4 border-white/20 dark:border-gray-700/50"
+          className="w-32 h-32 mx-auto rounded-full relative overflow-hidden border-4 border-gradient-to-r from-cyan-400 to-purple-600 shadow-2xl"
         >
-          <span className="relative z-10">🚀</span>
+          <img
+            src="/arjun-profile.jpg"
+            alt="Arjun Rawat"
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              // Fallback to rocket emoji if image doesn't load
+              e.currentTarget.style.display = 'none';
+              const parent = e.currentTarget.parentElement;
+              if (parent) {
+                parent.className = "w-32 h-32 mx-auto bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl relative overflow-hidden border-4 border-white/20 dark:border-gray-700/50";
+                parent.innerHTML = '<span class="relative z-10">🚀</span>';
+              }
+            }}
+          />
+          {/* Glowing ring effect */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-purple-600 opacity-30 blur-md animate-pulse"></div>
         </motion.div>
 
         <div className="space-y-4">
