@@ -31,22 +31,22 @@ export default function About() {
   };
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-20 space-y-16">
+    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-12 sm:space-y-16">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center space-y-6"
+        className="text-center space-y-4 sm:space-y-6"
       >
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
           About Me
         </h1>
         <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
       </motion.div>
 
       {/* Main content */}
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
         {/* Left side - Personal info */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}

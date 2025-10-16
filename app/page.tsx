@@ -27,7 +27,7 @@ export default function HomePage() {
     initialY: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 600),
   })) : [];
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-20 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 sm:px-6 py-12 sm:py-20 relative overflow-hidden">
       {/* Animated Background Particles */}
       {isClient && particles.map((particle) => (
         <motion.div
@@ -53,9 +53,9 @@ export default function HomePage() {
         />
       ))}
 
-      {/* Mouse follower */}
+      {/* Mouse follower - hidden on mobile */}
       <motion.div
-        className="fixed w-6 h-6 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full pointer-events-none z-50 opacity-50 blur-sm"
+        className="fixed w-6 h-6 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full pointer-events-none z-50 opacity-50 blur-sm hidden md:block"
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
@@ -72,7 +72,7 @@ export default function HomePage() {
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
-        className="lg:w-1/2 text-center lg:text-left space-y-6 relative z-10"
+        className="lg:w-1/2 text-center lg:text-left space-y-4 sm:space-y-6 relative z-10"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -92,7 +92,7 @@ export default function HomePage() {
             rotate: 5,
             transition: { duration: 0.3 }
           }}
-          className="w-32 h-32 mx-auto lg:mx-0 mb-6 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-full flex items-center justify-center text-4xl relative overflow-hidden cursor-pointer"
+          className="w-24 h-24 sm:w-32 sm:h-32 mx-auto lg:mx-0 mb-4 sm:mb-6 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-full flex items-center justify-center text-2xl sm:text-4xl relative overflow-hidden cursor-pointer"
         >
           <motion.div
             animate={{
@@ -116,7 +116,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-5xl lg:text-6xl font-bold"
+          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold"
         >
           Hi, I&apos;m{" "}
           <motion.span
@@ -150,7 +150,7 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="text-xl text-gray-300 max-w-lg mx-auto lg:mx-0 relative"
+          className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-lg mx-auto lg:mx-0 relative"
         >
           <motion.span
             animate={{
@@ -175,7 +175,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
         >
           <motion.a
             href="/projects"
@@ -185,7 +185,7 @@ export default function HomePage() {
               y: -2
             }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 rounded-full text-white font-semibold shadow-lg relative overflow-hidden group"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 rounded-full text-white font-semibold shadow-lg relative overflow-hidden group text-sm sm:text-base"
           >
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-500 opacity-0 group-hover:opacity-100"

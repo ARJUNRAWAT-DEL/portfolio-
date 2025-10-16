@@ -54,33 +54,33 @@ export default function Contact() {
   };
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-20 space-y-16">
+    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-12 sm:space-y-16">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center space-y-6"
+        className="text-center space-y-4 sm:space-y-6"
       >
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
-          className="w-20 h-20 mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-3xl"
+          className="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl"
         >
           📧
         </motion.div>
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
           Get In Touch
         </h1>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
           Have a project in mind or just want to chat about technology?
           I&apos;d love to hear from you! Let&apos;s create something amazing together.
         </p>
         <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
       </motion.div>
 
-      <div className="grid lg:grid-cols-2 gap-12">
+      <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
         {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -88,13 +88,13 @@ export default function Contact() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="space-y-6"
         >
-          <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
-            <h2 className="text-2xl font-bold text-gray-100 mb-6 flex items-center gap-2">
-              <MessageCircle className="w-6 h-6 text-indigo-400" />
+          <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-gray-700/50">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-100 mb-4 sm:mb-6 flex items-center gap-2">
+              <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
               Send a Message
             </h2>
 
-            <form className="space-y-6">
+            <form className="space-y-4 sm:space-y-6">
               <motion.div variants={itemVariants} className="space-y-2">
                 <label className="text-gray-300 font-medium">Name</label>
                 <input
