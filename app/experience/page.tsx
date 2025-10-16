@@ -5,7 +5,7 @@ const experiences = [
   {
     role: "IT Intern",
     company: "YARA FERTILIZERS INDIA Pvt. Ltd.",
-    period: "June 2024 - Sep 2024, On-Site",
+    period: "June 2025 - Sep 2025, On-Site",
     details: [
       "Developed and deployed an AI-powered document assistant using FastAPI, PostgreSQL, and NLP",
       "Achieved 40% improvement in document search efficiency by 25%",
@@ -18,7 +18,7 @@ const experiences = [
   {
     role: "Data Science Intern",
     company: "Labmentix",
-    period: "July 2024 - Present, Remote",
+    period: "July 2025 - Present, Remote",
     details: [
       "Learning and applying Machine Learning algorithms (supervised & unsupervised)",
       "Working with Python libraries: NumPy, Pandas, Scikit-learn",
