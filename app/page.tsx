@@ -1,7 +1,7 @@
 ﻿"use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowRight, Download, Code, Database, Brain, Cloud } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 
 export default function HomePage() {
   const [isClient, setIsClient] = useState(false);
@@ -9,13 +9,6 @@ export default function HomePage() {
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  const skills = [
-    { name: "Frontend Development", icon: Code, color: "from-blue-500 to-cyan-500" },
-    { name: "Data Science", icon: Database, color: "from-green-500 to-emerald-500" },
-    { name: "Machine Learning", icon: Brain, color: "from-purple-500 to-pink-500" },
-    { name: "Cloud Computing", icon: Cloud, color: "from-indigo-500 to-blue-500" }
-  ];
 
   if (!isClient) return <div className="min-h-screen" />;
 

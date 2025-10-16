@@ -84,7 +84,7 @@ export default function Contact() {
 
       setFormStatus({ 
         type: 'success', 
-        message: 'Thank you! Your message has been sent successfully. I\'ll get back to you soon!' 
+        message: 'Thank you! Your message has been sent successfully. I&apos;ll get back to you soon!' 
       });
       
       // Reset form

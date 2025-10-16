@@ -6,8 +6,15 @@ interface ContactFormData {
   message: string;
 }
 
+interface EmailData {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+}
+
 // Simple email sending function without React Email dependencies
-async function sendSimpleEmail(apiKey: string, emailData: any) {
+async function sendSimpleEmail(apiKey: string, emailData: EmailData) {
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -18,8 +25,8 @@ async function sendSimpleEmail(apiKey: string, emailData: any) {
   });
 
   if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`Email sending failed: ${error}`);
+    const errorText = await response.text();
+    throw new Error(`Email sending failed: ${errorText}`);
   }
 
   return response.json();

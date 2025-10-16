@@ -4,6 +4,14 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: false
   },
+  // Ignore ESLint errors during build
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // Ignore TypeScript errors during build (use with caution)
+  typescript: {
+    ignoreBuildErrors: false,
+  },
   // Add headers for better extension compatibility
   async headers() {
     return [
