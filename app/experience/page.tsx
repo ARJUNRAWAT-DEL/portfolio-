@@ -4,22 +4,9 @@ import { useEffect, useState } from "react";
 
 const experiences = [
   {
-    role: "IT Intern",
-    company: "YARA FERTILIZERS INDIA Pvt. Ltd.",
-    period: "June 2025 - Sep 2025, On-Site",
-    details: [
-      "Developed and deployed an AI-powered document assistant using FastAPI, PostgreSQL, and NLP",
-      "Achieved 40% improvement in document search efficiency by 25%",
-      "Built machine learning-based web application integrating multiple AI assistants",
-      "Optimized debugging and deployment workflows for large-scale data processing"
-    ],
-    technologies: ["Python", "FastAPI", "PostgreSQL", "NLP", "Machine Learning"],
-    emoji: "🚀"
-  },
-  {
     role: "Data Science Intern",
     company: "Labmentix",
-    period: "July 2025 - Present, Remote",
+    period: "July 2025 - November 2025, Remote",
     details: [
       "Learning and applying Machine Learning algorithms (supervised & unsupervised)",
       "Working with Python libraries: NumPy, Pandas, Scikit-learn",
@@ -27,6 +14,20 @@ const experiences = [
       "Built data visualization using Matplotlib and Seaborn"
     ],
     technologies: ["Python", "NumPy", "Pandas", "Scikit-learn", "Matplotlib", "Seaborn"],
+    emoji: "🚀"
+  },
+  {
+    role: "IT Intern",
+    company: "YARA FERTILIZERS INDIA Pvt. Ltd.",
+    period: "June 2025 - October 2025, On-Site",
+    details: [
+      "Developed and deployed an AI-powered document assistant using FastAPI, PostgreSQL, and NLP",
+      "Achieved 40% improvement in document search efficiency by 25%",
+      "Built machine learning-based web application integrating multiple AI assistants",
+      "Optimized debugging and deployment workflows for large-scale data processing"
+      
+    ],
+    technologies: ["Python", "FastAPI", "PostgreSQL", "NLP", "Machine Learning"],
     emoji: "📊"
   },
   {
