@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
         // Email to you (notification of new contact)
         const notificationEmail = {
           from: 'onboarding@resend.dev',
-          to: process.env.CONTACT_EMAIL || 'arjunrawat4741@gmail.com',
+          to: process.env.CONTACT_EMAIL || 'arjun.rawat@stud.vilniustech.lt',
           subject: `🚀 New Contact Form Submission from ${sanitizedData.name}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb; border-radius: 10px;">
@@ -124,59 +124,8 @@ export async function POST(request: NextRequest) {
 
         await sendSimpleEmail(process.env.RESEND_API_KEY, notificationEmail);
 
-        // Send confirmation email to the person who contacted you
-        const confirmationEmail = {
-          from: 'onboarding@resend.dev',
-          to: sanitizedData.email,
-          subject: `Thank you for contacting Arjun Rawat! 🚀`,
-          html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb; border-radius: 10px;">
-              <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 20px;">
-                <h1 style="color: white; margin: 0; font-size: 24px;">Thanks for reaching out! 🚀</h1>
-              </div>
-              
-              <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-                  Hi <strong>${sanitizedData.name}</strong>,
-                </p>
-                
-                <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-                  Thank you for contacting me through my portfolio! I've received your message and I'm excited to connect with you.
-                </p>
-                
-                <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 20px;">
-                  <h3 style="color: #065f46; margin: 0 0 10px 0;">✅ What happens next?</h3>
-                  <ul style="color: #374151; margin: 0; padding-left: 20px;">
-                    <li>I typically respond within 24 hours</li>
-                    <li>I'll reach out to discuss your project or inquiry</li>
-                    <li>We can schedule a call if needed</li>
-                  </ul>
-                </div>
-                
-                <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-                  In the meantime, feel free to:
-                </p>
-                
-                <div style="text-align: center; margin-bottom: 20px;">
-                  <a href="https://github.com/ARJUNRAWAT-DEL" style="background: #24292e; color: white; padding: 8px 16px; text-decoration: none; border-radius: 6px; margin: 0 5px; display: inline-block;">
-                    View my GitHub
-                  </a>
-                  <a href="https://www.linkedin.com/in/rwtarjun/" style="background: #0077b5; color: white; padding: 8px 16px; text-decoration: none; border-radius: 6px; margin: 0 5px; display: inline-block;">
-                    Connect on LinkedIn
-                  </a>
-                </div>
-                
-                <p style="color: #374151; font-size: 16px; line-height: 1.6;">
-                  Best regards,<br>
-                  <strong>Arjun Rawat</strong><br>
-                  <span style="color: #6b7280; font-size: 14px;">Data Analyst | AI/ML Engineer | Software Developer</span>
-                </p>
-              </div>
-            </div>
-          `
-        };
-
-        await sendSimpleEmail(process.env.RESEND_API_KEY, confirmationEmail);
+        // Note: With Resend free tier, we can only send TO your verified email
+        // Confirmation emails to form submitters would require domain verification
 
         emailSent = true;
         console.log('✅ Emails sent successfully');
