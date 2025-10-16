@@ -73,8 +73,14 @@ export async function POST(request: NextRequest) {
 
     // Send email notification if API key is configured
     let emailSent = false;
+    console.log('🔍 Checking email configuration...');
+    console.log('📧 RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY);
+    console.log('📧 CONTACT_EMAIL:', process.env.CONTACT_EMAIL);
+    
     if (process.env.RESEND_API_KEY) {
       try {
+        console.log('📧 Starting email send process...');
+        
         // Email to you (notification of new contact)
         const notificationEmail = {
           from: 'onboarding@resend.dev',
@@ -122,7 +128,14 @@ export async function POST(request: NextRequest) {
           `
         };
 
-        await sendSimpleEmail(process.env.RESEND_API_KEY, notificationEmail);
+        console.log('📧 Email payload prepared:', {
+          from: notificationEmail.from,
+          to: notificationEmail.to,
+          subject: notificationEmail.subject
+        });
+
+        const emailResult = await sendSimpleEmail(process.env.RESEND_API_KEY, notificationEmail);
+        console.log('📧 Resend API response:', emailResult);
 
         // Note: With Resend free tier, we can only send TO your verified email
         // Confirmation emails to form submitters would require domain verification
@@ -131,8 +144,14 @@ export async function POST(request: NextRequest) {
         console.log('✅ Emails sent successfully');
       } catch (emailError) {
         console.error('❌ Failed to send email:', emailError);
+        console.error('❌ Error details:', {
+          message: emailError instanceof Error ? emailError.message : String(emailError),
+          stack: emailError instanceof Error ? emailError.stack : undefined
+        });
         // Don't fail the request if email sending fails
       }
+    } else {
+      console.log('⚠️ RESEND_API_KEY not configured, skipping email send');
     }
 
     // For now, we'll simulate processing time
