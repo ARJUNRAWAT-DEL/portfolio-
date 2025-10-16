@@ -8,25 +8,25 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full bg-white dark:bg-gray-900 shadow-md z-50">
+    <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-md border-b border-white/10 shadow-lg z-50">
       <div className="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
         {/* Logo */}
-        <Link href="/" className="text-xl sm:text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-          My Portfolio
+        <Link href="/" className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+          Arjun Rawat
         </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-6 items-center text-lg">
-          <Link href="/" className="hover:text-indigo-500 transition-colors">
+          <Link href="/" className="text-gray-200 hover:text-cyan-400 transition-colors duration-300">
             Home
           </Link>
-          <Link href="/about" className="hover:text-indigo-500 transition-colors">
+          <Link href="/about" className="text-gray-200 hover:text-cyan-400 transition-colors duration-300">
             About
           </Link>
-          <Link href="/experience" className="hover:text-indigo-500 transition-colors">
+          <Link href="/experience" className="text-gray-200 hover:text-cyan-400 transition-colors duration-300">
             Experience
           </Link>
-          <Link href="/contact" className="hover:text-indigo-500 transition-colors">
+          <Link href="/contact" className="text-gray-200 hover:text-cyan-400 transition-colors duration-300">
             Contact
           </Link>
           <ThemeToggle />
@@ -37,7 +37,7 @@ export default function Navbar() {
           <ThemeToggle />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-700 dark:text-gray-300 hover:text-indigo-500 focus:outline-none focus:text-indigo-500"
+            className="text-gray-200 hover:text-cyan-400 focus:outline-none focus:text-cyan-400 transition-colors duration-300"
           >
             <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
               {isMenuOpen ? (
@@ -52,32 +52,32 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+        <div className="md:hidden bg-black/30 backdrop-blur-md border-t border-white/10">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link
               href="/"
-              className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+              className="block px-3 py-2 text-base font-medium text-gray-200 hover:text-cyan-400 hover:bg-white/5 rounded-md transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               href="/about"
-              className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+              className="block px-3 py-2 text-base font-medium text-gray-200 hover:text-cyan-400 hover:bg-white/5 rounded-md transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </Link>
             <Link
               href="/experience"
-              className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+              className="block px-3 py-2 text-base font-medium text-gray-200 hover:text-cyan-400 hover:bg-white/5 rounded-md transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Experience
             </Link>
             <Link
               href="/contact"
-              className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
+              className="block px-3 py-2 text-base font-medium text-gray-200 hover:text-cyan-400 hover:bg-white/5 rounded-md transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact

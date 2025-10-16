@@ -89,13 +89,13 @@ export default function Experience() {
         transition={{ duration: 0.8 }}
         className="text-center space-y-4 sm:space-y-6"
       >
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
           Experience
         </h1>
         <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
           My professional journey and the projects that shaped my development skills
         </p>
-        <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
+        <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full"></div>
       </motion.div>
 
       {/* Timeline */}
@@ -106,7 +106,7 @@ export default function Experience() {
         className="relative"
       >
         {/* Timeline line - hidden on mobile */}
-        <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 to-purple-500 hidden md:block"></div>
+        <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 to-purple-500 hidden md:block"></div>
 
         <div className="space-y-8 sm:space-y-12">
           {experiences.map((exp, i) => (
@@ -120,7 +120,7 @@ export default function Experience() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: i * 0.3 + 0.5, type: "spring" }}
-                className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-xl sm:text-2xl shadow-lg mx-auto md:mx-0 flex-shrink-0"
+                className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-xl sm:text-2xl shadow-lg mx-auto md:mx-0 flex-shrink-0 border-2 border-cyan-400/30"
               >
                 {exp.emoji}
               </motion.div>
@@ -130,12 +130,12 @@ export default function Experience() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.3 + 0.7 }}
-                className="flex-1 bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-gray-700/50 hover:border-indigo-500/50 transition-all duration-300"
+                className="flex-1 bg-gray-800/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-cyan-400/20 hover:border-cyan-400/50 transition-all duration-300 shadow-lg"
               >
                 <div className="flex flex-col space-y-3 sm:space-y-4">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                     <div className="space-y-1">
-                      <h2 className="text-xl sm:text-2xl font-bold text-indigo-400">
+                      <h2 className="text-xl sm:text-2xl font-bold text-cyan-400">
                         {exp.role}
                       </h2>
                       <p className="text-base sm:text-lg text-gray-300 font-semibold">
@@ -143,7 +143,7 @@ export default function Experience() {
                       </p>
                     </div>
                     <div className="mt-2 sm:mt-0">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                         {exp.period}
                       </span>
                     </div>
@@ -158,7 +158,7 @@ export default function Experience() {
                         transition={{ delay: i * 0.3 + 0.9 + idx * 0.1 }}
                         className="flex items-start space-x-2 text-sm sm:text-base text-gray-300"
                       >
-                        <span className="text-indigo-400 mt-1 flex-shrink-0">•</span>
+                        <span className="text-cyan-400 mt-1 flex-shrink-0">•</span>
                         <span>{detail}</span>
                       </motion.li>
                     ))}
@@ -207,7 +207,7 @@ export default function Experience() {
             className="text-center p-4 sm:p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50"
           >
             <div className="text-2xl sm:text-3xl mb-2">{stat.icon}</div>
-            <div className="text-xl sm:text-2xl font-bold text-indigo-400">{stat.number}</div>
+            <div className="text-xl sm:text-2xl font-bold text-cyan-400">{stat.number}</div>
             <div className="text-gray-400 text-xs sm:text-sm">{stat.label}</div>
           </motion.div>
         ))}

@@ -27,46 +27,7 @@ export default function HomePage() {
     initialY: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 600),
   })) : [];
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 sm:px-6 py-12 sm:py-20 relative overflow-hidden">
-      {/* Animated Background Particles */}
-      {isClient && particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute w-2 h-2 bg-gradient-to-r from-indigo-400 to-purple-600 rounded-full opacity-20"
-          animate={{
-            x: [particle.initialX, particle.initialX + 100],
-            y: [particle.initialY, particle.initialY - 100],
-            scale: [1, 1.5],
-            opacity: [0.2, 0.6],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            repeatType: "reverse",
-            delay: particle.delay,
-            ease: "easeInOut"
-          }}
-          style={{
-            width: particle.size,
-            height: particle.size,
-          }}
-        />
-      ))}
-
-      {/* Mouse follower - hidden on mobile */}
-      <motion.div
-        className="fixed w-6 h-6 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full pointer-events-none z-50 opacity-50 blur-sm hidden md:block"
-        animate={{
-          x: mousePosition.x - 12,
-          y: mousePosition.y - 12,
-        }}
-        transition={{
-          type: "spring",
-          damping: 30,
-          stiffness: 200,
-        }}
-      />
-
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 sm:px-6 py-12 sm:py-20 relative">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, x: -100 }}
@@ -83,8 +44,8 @@ export default function HomePage() {
             scale: 1, 
             rotate: 0,
             boxShadow: isHovered 
-              ? "0 0 50px rgba(99, 102, 241, 0.5), 0 0 100px rgba(139, 92, 246, 0.3)"
-              : "0 0 30px rgba(99, 102, 241, 0.3)"
+              ? "0 0 50px rgba(34, 211, 238, 0.5), 0 0 100px rgba(139, 92, 246, 0.3)"
+              : "0 0 30px rgba(34, 211, 238, 0.3)"
           }}
           transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
           whileHover={{ 
@@ -92,7 +53,7 @@ export default function HomePage() {
             rotate: 5,
             transition: { duration: 0.3 }
           }}
-          className="w-24 h-24 sm:w-32 sm:h-32 mx-auto lg:mx-0 mb-4 sm:mb-6 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-full flex items-center justify-center text-2xl sm:text-4xl relative overflow-hidden cursor-pointer"
+          className="w-24 h-24 sm:w-32 sm:h-32 mx-auto lg:mx-0 mb-4 sm:mb-6 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-full flex items-center justify-center text-2xl sm:text-4xl relative overflow-hidden cursor-pointer border-2 border-cyan-400/30"
         >
           <motion.div
             animate={{
@@ -108,7 +69,7 @@ export default function HomePage() {
               backgroundSize: "200% 200%"
             }}
           />
-          <span className="relative z-10">👨‍💻</span>
+          <span className="relative z-10">�</span>
         </motion.div>
 
         {/* Name with typing effect */}
@@ -123,15 +84,15 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1, duration: 0.8, type: "spring" }}
-            className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent relative"
+            className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent relative"
             whileHover={{
               scale: 1.05,
-              textShadow: "0 0 20px rgba(99, 102, 241, 0.5)"
+              textShadow: "0 0 20px rgba(34, 211, 238, 0.5)"
             }}
           >
             Arjun Rawat
             <motion.div
-              className="absolute -inset-1 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-lg opacity-20 blur"
+              className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-lg opacity-20 blur"
               animate={{
                 scale: [1, 1.05, 1],
                 opacity: [0.2, 0.4, 0.2]
@@ -161,7 +122,7 @@ export default function HomePage() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent"
+            className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
             style={{
               backgroundSize: "200% auto"
             }}
@@ -181,11 +142,11 @@ export default function HomePage() {
             href="/projects"
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0 0 30px rgba(99, 102, 241, 0.6)",
+              boxShadow: "0 0 30px rgba(34, 211, 238, 0.6)",
               y: -2
             }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 rounded-full text-white font-semibold shadow-lg relative overflow-hidden group text-sm sm:text-base"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 rounded-full text-white font-semibold shadow-lg relative overflow-hidden group text-sm sm:text-base border border-cyan-400/30"
           >
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-500 opacity-0 group-hover:opacity-100"
