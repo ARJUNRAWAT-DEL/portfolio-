@@ -103,7 +103,7 @@ export default function Experience() {
           Experience
         </h1>
         <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
-          My professional journey and the projects that shaped my development skills
+          My professional journey as a Data Analyst with AI/ML expertise and modern development skills
         </p>
         <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full"></div>
       </motion.div>
