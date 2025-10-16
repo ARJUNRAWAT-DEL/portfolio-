@@ -1,14 +1,112 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Mail, Github, Linkedin, Send, MessageCircle, MapPin } from "lucide-react";
+import { Mail, Github, Linkedin, Send, MessageCircle, MapPin, CheckCircle, XCircle, Loader } from "lucide-react";
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+interface FormStatus {
+  type: 'idle' | 'loading' | 'success' | 'error';
+  message: string;
+}
 
 export default function Contact() {
   const [isClient, setIsClient] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [formStatus, setFormStatus] = useState<FormStatus>({
+    type: 'idle',
+    message: ''
+  });
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const validateForm = (): boolean => {
+    if (!formData.name.trim()) {
+      setFormStatus({ type: 'error', message: 'Please enter your name.' });
+      return false;
+    }
+    if (!formData.email.trim()) {
+      setFormStatus({ type: 'error', message: 'Please enter your email.' });
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setFormStatus({ type: 'error', message: 'Please enter a valid email address.' });
+      return false;
+    }
+    if (!formData.message.trim()) {
+      setFormStatus({ type: 'error', message: 'Please enter a message.' });
+      return false;
+    }
+    if (formData.message.trim().length < 10) {
+      setFormStatus({ type: 'error', message: 'Message should be at least 10 characters long.' });
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+
+    setFormStatus({ type: 'loading', message: 'Sending your message...' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setFormStatus({ 
+        type: 'success', 
+        message: 'Thank you! Your message has been sent successfully. I\'ll get back to you soon!' 
+      });
+      
+      // Reset form
+      setFormData({ name: '', email: '', message: '' });
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setFormStatus({ type: 'idle', message: '' });
+      }, 5000);
+
+    } catch (error) {
+      setFormStatus({ 
+        type: 'error', 
+        message: 'Sorry, there was an error sending your message. Please try again or contact me directly via email.' 
+      });
+      
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setFormStatus({ type: 'idle', message: '' });
+      }, 5000);
+    }
+  };
   const contactInfo = [
     {
       icon: Mail,
@@ -102,15 +200,38 @@ export default function Contact() {
               Send a Message
             </h2>
 
-            <form className="space-y-4 sm:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              {/* Status Message */}
+              {formStatus.type !== 'idle' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`p-4 rounded-xl flex items-center gap-3 ${
+                    formStatus.type === 'success' 
+                      ? 'bg-green-500/20 border border-green-500/30 text-green-300'
+                      : formStatus.type === 'error'
+                      ? 'bg-red-500/20 border border-red-500/30 text-red-300'
+                      : 'bg-blue-500/20 border border-blue-500/30 text-blue-300'
+                  }`}
+                >
+                  {formStatus.type === 'success' && <CheckCircle className="w-5 h-5" />}
+                  {formStatus.type === 'error' && <XCircle className="w-5 h-5" />}
+                  {formStatus.type === 'loading' && <Loader className="w-5 h-5 animate-spin" />}
+                  <span className="text-sm">{formStatus.message}</span>
+                </motion.div>
+              )}
+
               <motion.div variants={itemVariants} className="space-y-2">
                 <label className="text-gray-300 font-medium">Name</label>
                 <input
                   type="text"
                   name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   placeholder="Your Name"
                   required
-                  className="w-full p-4 rounded-xl bg-gray-700/50 border border-gray-600/50 focus:border-indigo-500/50 outline-none text-gray-100 placeholder-gray-400 transition-all duration-300 focus:bg-gray-700/70"
+                  disabled={formStatus.type === 'loading'}
+                  className="w-full p-4 rounded-xl bg-gray-700/50 border border-gray-600/50 focus:border-indigo-500/50 outline-none text-gray-100 placeholder-gray-400 transition-all duration-300 focus:bg-gray-700/70 disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </motion.div>
 
@@ -119,9 +240,12 @@ export default function Contact() {
                 <input
                   type="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   placeholder="your.email@example.com"
                   required
-                  className="w-full p-4 rounded-xl bg-gray-700/50 border border-gray-600/50 focus:border-indigo-500/50 outline-none text-gray-100 placeholder-gray-400 transition-all duration-300 focus:bg-gray-700/70"
+                  disabled={formStatus.type === 'loading'}
+                  className="w-full p-4 rounded-xl bg-gray-700/50 border border-gray-600/50 focus:border-indigo-500/50 outline-none text-gray-100 placeholder-gray-400 transition-all duration-300 focus:bg-gray-700/70 disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </motion.div>
 
@@ -129,22 +253,35 @@ export default function Contact() {
                 <label className="text-gray-300 font-medium">Message</label>
                 <textarea
                   name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   rows={6}
                   placeholder="Tell me about your project or just say hi! 👋"
                   required
-                  className="w-full p-4 rounded-xl bg-gray-700/50 border border-gray-600/50 focus:border-indigo-500/50 outline-none text-gray-100 placeholder-gray-400 transition-all duration-300 focus:bg-gray-700/70 resize-none"
+                  disabled={formStatus.type === 'loading'}
+                  className="w-full p-4 rounded-xl bg-gray-700/50 border border-gray-600/50 focus:border-indigo-500/50 outline-none text-gray-100 placeholder-gray-400 transition-all duration-300 focus:bg-gray-700/70 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                 ></textarea>
               </motion.div>
 
               <motion.button
                 type="submit"
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full py-4 px-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50"
+                whileHover={{ scale: formStatus.type === 'loading' ? 1 : 1.02 }}
+                whileTap={{ scale: formStatus.type === 'loading' ? 1 : 0.98 }}
+                disabled={formStatus.type === 'loading'}
+                className="w-full py-4 px-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
               >
-                <Send className="w-5 h-5" />
-                Send Message
+                {formStatus.type === 'loading' ? (
+                  <>
+                    <Loader className="w-5 h-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Send Message
+                  </>
+                )}
               </motion.button>
             </form>
           </div>

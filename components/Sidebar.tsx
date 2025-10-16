@@ -92,6 +92,7 @@ export default function Sidebar() {
               exit="closed"
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              suppressHydrationWarning={true}
             />
             
             {/* Sidebar */}
@@ -101,6 +102,7 @@ export default function Sidebar() {
               animate="open"
               exit="closed"
               className="fixed left-0 top-0 h-full w-72 bg-white dark:bg-gray-900 z-50 lg:hidden flex flex-col"
+              suppressHydrationWarning={true}
             >
               <SidebarContent pathname={pathname} closeSidebar={() => setIsOpen(false)} />
             </motion.aside>
@@ -115,17 +117,18 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
   return (
     <>
       {/* Header */}
-      <div className="p-6 border-b border-gray-200 dark:border-gray-700/50">
-        <div className="flex items-center justify-between">
+      <div className="p-6 border-b border-gray-200 dark:border-gray-700/50" suppressHydrationWarning={true}>
+        <div className="flex items-center justify-between" suppressHydrationWarning={true}>
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             className="flex items-center space-x-3"
+            suppressHydrationWarning={true}
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center" suppressHydrationWarning={true}>
               <Rocket className="w-6 h-6 text-white" />
             </div>
-            <div>
+            <div suppressHydrationWarning={true}>
               <h2 className="text-lg font-bold text-gray-900 dark:text-white">Arjun Rawat</h2>
               <p className="text-sm text-gray-600 dark:text-gray-400">Full Stack Developer</p>
             </div>
@@ -141,7 +144,7 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-4 space-y-2" suppressHydrationWarning={true}>
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;
@@ -182,17 +185,17 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
       </nav>
 
       {/* Theme Toggle */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700/50">
-        <div className="flex items-center justify-between mb-4">
+      <div className="p-4 border-t border-gray-200 dark:border-gray-700/50" suppressHydrationWarning={true}>
+        <div className="flex items-center justify-between mb-4" suppressHydrationWarning={true}>
           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Theme</span>
           <ThemeToggle />
         </div>
       </div>
 
       {/* Social Links */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700/50">
+      <div className="p-4 border-t border-gray-200 dark:border-gray-700/50" suppressHydrationWarning={true}>
         <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Connect</p>
-        <div className="flex space-x-3">
+        <div className="flex space-x-3" suppressHydrationWarning={true}>
           {socialLinks.map((social) => {
             const Icon = social.icon;
             return (
