@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowRight, Download, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 import ProjectCard from "../components/ProjectCard";
+import FloatingParticles from "../components/FloatingParticles";
+import MagneticButton from "../components/MagneticButton";
+import Typewriter from "../components/Typewriter";
 
 export default function HomePage() {
   const [isClient, setIsClient] = useState(false);
@@ -168,9 +171,16 @@ export default function HomePage() {
   if (!isClient) return <div className="min-h-screen" />;
 
   return (
-    <div className="space-y-0">
+    <div className="space-y-0 relative">
+      {/* Floating Particles Background */}
+      <FloatingParticles />
+      
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center py-20">
+      <section id="home" className="min-h-screen flex items-center justify-center py-20 relative z-10"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 35%, transparent 70%)'
+        }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -218,7 +228,16 @@ export default function HomePage() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             >
-              Data Analyst with AI/ML • Software Developer • Big Data Engineering
+              <Typewriter 
+                words={[
+                  "Data Science & AI/ML Enthusiast",
+                  "Software Developer", 
+                  "Tech Innovator",
+                  "Problem Solver",
+                  "Cloud Engineer"
+                ]}
+                className="bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent font-semibold"
+              />
             </motion.p>
           </div>
 
@@ -226,28 +245,26 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
-            <motion.a
-              href="#projects"
+            <motion.button
+              onClick={() => {
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="group flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}
             >
               <span>View My Work</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </motion.a>
+            </motion.button>
             
             <motion.a
               href="/arjun_rawat_resume.pdf"
               target="_blank"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 px-8 py-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-900 dark:text-white rounded-full font-semibold border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
+              className="flex items-center space-x-2 px-8 py-4 bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm text-gray-900 dark:text-white rounded-full font-semibold border border-gray-300 dark:border-gray-600 hover:bg-white/20 dark:hover:bg-gray-800/70 transition-all duration-300"
             >
               <Download size={20} />
               <span>Download Resume</span>
@@ -270,20 +287,39 @@ export default function HomePage() {
               About Me
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              I'm a passionate Data Analyst and Software Developer with expertise in AI/ML, specializing in creating intelligent solutions that solve real-world problems.
+              I'm a passionate Data Science & AI/ML Enthusiast and Software Developer, dedicated to creating innovative solutions that bridge technology and real-world impact.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <motion.div variants={itemVariants} className="relative">
-                <div className="w-full h-64 sm:h-80 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 dark:border-gray-700/50">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="max-w-sm mx-auto mb-8">
+              <div className="relative">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  animate={{ 
+                    y: [0, -10, 0],
+                    rotate: [0, 2, -2, 0]
+                  }}
+                  transition={{ 
+                    scale: { duration: 0.8, delay: 0.4 },
+                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  viewport={{ once: true }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    rotateY: 15,
+                    transition: { duration: 0.3 }
+                  }}
+                  className="w-64 h-64 mx-auto rounded-full overflow-hidden shadow-2xl border-8 border-white dark:border-gray-800 bg-gradient-to-br from-cyan-400 to-purple-600 cursor-pointer"
+                >
                   <img
                     src="/arjun-profile.jpg"
                     alt="Arjun Rawat - Professional"
@@ -292,59 +328,106 @@ export default function HomePage() {
                       e.currentTarget.style.display = 'none';
                       const parent = e.currentTarget.parentElement;
                       if (parent) {
-                        parent.className = "w-full h-64 sm:h-80 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-6xl shadow-2xl border-4 border-white/10 dark:border-gray-700/50";
-                        parent.innerHTML = '<span class="relative z-10">🚀</span>';
+                        parent.className = "w-64 h-64 mx-auto bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-full flex items-center justify-center text-6xl shadow-2xl border-8 border-white dark:border-gray-800";
+                        parent.innerHTML = '<span class="relative z-10 text-white">🚀</span>';
                       }
                     }}
                   />
-                </div>
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-purple-600/20 blur-xl"></div>
-              </motion.div>
+                </motion.div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/30 to-purple-600/30 blur-2xl -z-10"></div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto text-center space-y-8"
+          >
+            <motion.p variants={itemVariants} className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl leading-relaxed">
+              With a strong foundation in Information Technology and comprehensive experience in data science, I specialize in transforming complex data into actionable insights and building scalable software solutions.
+            </motion.p>
+            
+            <motion.p variants={itemVariants} className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl leading-relaxed">
+              Currently pursuing my degree at Vilnius Gediminas Technical University, I combine academic excellence with practical experience gained through internships and hands-on projects in machine learning, data analysis, and full-stack development.
+            </motion.p>
+
+            <motion.p variants={itemVariants} className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl leading-relaxed">
+              My passion lies in leveraging cutting-edge technologies like Python, Machine Learning, and Cloud Platforms to create intelligent systems that drive business value and solve complex challenges.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-16 max-w-4xl mx-auto"
+          >
+            <motion.div variants={itemVariants} className="text-center mb-12">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Technical Skills</h3>
+              <p className="text-gray-600 dark:text-gray-400">Technologies and tools I work with</p>
             </motion.div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <motion.p variants={itemVariants} className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
-                With a strong foundation in information technology and hands-on experience in data science, I bridge the gap between technical innovation and practical business solutions.
-              </motion.p>
-              
-              <motion.p variants={itemVariants} className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
-                Currently pursuing my degree at Vilnius Gediminas Technical University while gaining real-world experience through internships at leading companies like YARA Fertilizers and Labmentix.
-              </motion.p>
-
-              <motion.div variants={itemVariants} className="space-y-4">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Technical Skills</h3>
-                <div className="space-y-4">
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      variants={itemVariants}
-                      className="space-y-2"
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  variants={itemVariants}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    rotateY: 5,
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                  }}
+                  className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 relative overflow-hidden group cursor-pointer"
+                >
+                  {/* Animated background gradient */}
+                  <motion.div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                    style={{
+                      background: `linear-gradient(45deg, ${skill.color.replace('from-', '').replace(' to-', ', ')})`,
+                    }}
+                  />
+                  
+                  <div className="flex justify-between items-center mb-3 relative z-10">
+                    <span className="text-base font-semibold text-gray-800 dark:text-gray-200">{skill.name}</span>
+                    <motion.span 
+                      className="text-sm text-gray-600 dark:text-gray-400 font-medium"
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{skill.level}%</span>
-                      </div>
-                      <div className="relative h-2 sm:h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1, delay: index * 0.1 }}
-                          viewport={{ once: true }}
-                          className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
-                        />
-                      </div>
+                      {skill.level}%
+                    </motion.span>
+                  </div>
+                  
+                  <div className="relative h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0, scaleY: 1 }}
+                      whileInView={{ 
+                        width: `${skill.level}%`,
+                        scaleY: [1, 1.2, 1]
+                      }}
+                      transition={{ 
+                        width: { duration: 1.2, delay: index * 0.1 },
+                        scaleY: { duration: 0.5, delay: index * 0.1 + 1.2 }
+                      }}
+                      viewport={{ once: true }}
+                      className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative`}
+                    >
+                      {/* Glow effect */}
+                      <motion.div
+                        className={`absolute inset-0 bg-gradient-to-r ${skill.color} rounded-full blur-sm opacity-50`}
+                        animate={{ opacity: [0.5, 0.8, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
                     </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -497,14 +580,14 @@ export default function HomePage() {
 
               <div className="space-y-4">
                 <motion.a
-                  href="mailto:arjun.rawat@stud.vilniustech.lt"
+                  href="mailto:arjunrawat4741@gmail.com"
                   whileHover={{ scale: 1.05 }}
                   className="flex items-center space-x-3 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700"
                 >
                   <Mail className="text-cyan-500" size={24} />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">Email</p>
-                    <p className="text-gray-600 dark:text-gray-300">arjun.rawat@stud.vilniustech.lt</p>
+                    <p className="text-gray-600 dark:text-gray-300">arjunrawat4741@gmail.com</p>
                   </div>
                 </motion.a>
 

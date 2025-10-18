@@ -8,6 +8,7 @@ import ClientErrorSuppression from "../components/ClientErrorSuppression";
 import HydrationProtection from "../components/HydrationProtection";
 import HydrationFix from "../components/HydrationFix";
 import ClientOnly from "../components/ClientOnly";
+import ArjunAI from "../components/ArjunAI";
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 
@@ -385,11 +386,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </ClientOnly>
             <div className="relative z-10 flex" suppressHydrationWarning>
               <Sidebar />
+              <ClientOnly>
+                <ArjunAI />
+              </ClientOnly>
               <div className="flex-1 lg:ml-72">
                 <main className="min-h-screen p-4 sm:p-6 lg:p-8" suppressHydrationWarning>{children}</main>
                 <Footer />
               </div>
             </div>
+            <ClientOnly>
+              <ArjunAI />
+            </ClientOnly>
             <Analytics />
           </ThemeProvider>
         </ExtensionErrorBoundary>
