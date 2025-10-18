@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
         // Email to you (notification of new contact)
         const notificationEmail = {
           from: 'onboarding@resend.dev',
-          to: process.env.CONTACT_EMAIL || 'arjun.rawat@stud.vilniustech.lt',
+          to: process.env.CONTACT_EMAIL || 'arjunrawat4741@gmail.com',
           subject: `🚀 New Contact Form Submission from ${sanitizedData.name}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb; border-radius: 10px;">
