@@ -64,24 +64,41 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   // Freeze the geolocation object completely
                   if (navigator.geolocation) {
                     try {
+                      // ULTRA protection against getCurrentPosition modification
+                      const originalGetCurrentPosition = navigator.geolocation.getCurrentPosition;
+                      Object.defineProperty(navigator.geolocation, 'getCurrentPosition', {
+                        value: originalGetCurrentPosition,
+                        writable: false,
+                        configurable: false
+                      });
+                      
+                      // Block any property assignment to geolocation
+                      Object.defineProperty(navigator, 'geolocation', {
+                        value: navigator.geolocation,
+                        writable: false,
+                        configurable: false
+                      });
+                      
                       Object.freeze(navigator.geolocation);
                       Object.freeze(navigator.geolocation.getCurrentPosition);
                       Object.freeze(navigator.geolocation.watchPosition);
                       Object.freeze(navigator.geolocation.clearWatch);
                     } catch (e) {
-                      // If freezing fails, create a replacement
-                      const originalGeo = navigator.geolocation;
-                      Object.defineProperty(navigator, 'geolocation', {
-                        value: Object.freeze({
-                          getCurrentPosition: originalGeo.getCurrentPosition.bind(originalGeo),
-                          watchPosition: originalGeo.watchPosition.bind(originalGeo),
-                          clearWatch: originalGeo.clearWatch.bind(originalGeo)
-                        }),
-                        writable: false,
-                        configurable: false
-                      });
+                      // Silent fail - extension protection
                     }
                   }
+                  
+                  // Block ALL property assignments that include 'extendCurrentPosition'
+                  const originalDefineProperty = Object.defineProperty;
+                  Object.defineProperty = function(target, property, descriptor) {
+                    if (typeof property === 'string' && 
+                        (property.includes('extendCurrentPosition') || 
+                         property.includes('extendLocation') ||
+                         property === 'getCurrentPosition')) {
+                      return target; // Block the property definition
+                    }
+                    return originalDefineProperty.call(this, target, property, descriptor);
+                  };
                   
                   // Block extension scripts from loading
                   const originalCreateElement = document.createElement;

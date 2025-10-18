@@ -48,12 +48,34 @@ export function useExtensionErrorSuppression() {
       const message = args.join(' ');
       if (message.includes('chrome-extension://') ||
           message.includes('getCurrentPosition') ||
+          message.includes('extendCurrentPosition') ||
+          message.includes('extendLocation') ||
           message.includes('read only property') ||
+          message.includes('Cannot assign to read only property') ||
           message.includes('eppiocemhmnlbhjplcgkofciiegomcon')) {
         return; // Suppress extension errors
       }
       originalConsoleError.apply(console, args);
     };
+
+    // Additional runtime protection against the specific extension
+    try {
+      if (typeof window !== 'undefined' && window.navigator && window.navigator.geolocation) {
+        // Block any attempts to modify getCurrentPosition
+        const originalDefineProperty = Object.defineProperty;
+        Object.defineProperty = function(target: any, property: string | symbol, descriptor: PropertyDescriptor) {
+          if (typeof property === 'string' && 
+              (property.includes('extendCurrentPosition') || 
+               property.includes('extendLocation') ||
+               property === 'getCurrentPosition')) {
+            return target; // Block the property definition
+          }
+          return originalDefineProperty.call(this, target, property, descriptor);
+        };
+      }
+    } catch (e) {
+      // Silent fail
+    }
 
     return () => {
       window.removeEventListener('unhandledrejection', handleUnhandledRejection);
