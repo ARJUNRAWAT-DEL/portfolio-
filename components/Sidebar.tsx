@@ -161,45 +161,7 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
   };
 
   if (!isMounted) {
-    return (
-      <>
-        {/* Header */}
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700/50">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center">
-                <Rocket className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">Arjun Rawat</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Data Science Enthusiast</p>
-              </div>
-            </div>
-            <button
-              onClick={closeSidebar}
-              className="lg:hidden p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-            >
-              <X size={20} />
-            </button>
-          </div>
-        </div>
-
-        {/* Navigation - Static version during hydration */}
-        <nav className="flex-1 p-4 space-y-2">
-          {menuItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.href} className="opacity-0">
-                <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200">
-                  <Icon size={20} />
-                  <span className="font-medium">{item.label}</span>
-                </button>
-              </div>
-            );
-          })}
-        </nav>
-      </>
-    );
+    return null; // Prevent hydration mismatch by not rendering until mounted
   }
 
   return (
