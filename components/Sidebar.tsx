@@ -169,7 +169,7 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
             </div>
             <div suppressHydrationWarning={true}>
               <h2 className="text-lg font-bold text-gray-900 dark:text-white">Arjun Rawat</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Full Stack Developer</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Data Analyst & IT Student</p>
             </div>
           </motion.div>
           

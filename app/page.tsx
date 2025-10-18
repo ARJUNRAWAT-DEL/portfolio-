@@ -67,12 +67,12 @@ export default function HomePage() {
       company: "Vilnius Gediminas Technical University",
       period: "2022-2026, Vilnius, Lithuania",
       details: [
-        "Bachelor's in Cybersecurity Engineering",
+        "Bachelor's in Information Technology",
         "Relevant coursework: Data Structures, Algorithms, Database Systems",
-        "Focus on cybersecurity, software development, and data analysis",
+        "Focus on software development, data analysis, and modern IT solutions",
         "Active participation in tech projects and competitions"
       ],
-      technologies: ["Computer Science", "Cybersecurity", "Software Engineering"],
+      technologies: ["Computer Science", "Information Technology", "Software Engineering"],
       emoji: "🎓"
     }
   ];
@@ -310,7 +310,7 @@ export default function HomePage() {
               className="space-y-6"
             >
               <motion.p variants={itemVariants} className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
-                With a strong foundation in cybersecurity engineering and hands-on experience in data science, I bridge the gap between technical innovation and practical business solutions.
+                With a strong foundation in information technology and hands-on experience in data science, I bridge the gap between technical innovation and practical business solutions.
               </motion.p>
               
               <motion.p variants={itemVariants} className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
