@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -19,17 +19,17 @@ import {
 import ThemeToggle from './ThemeToggle';
 
 const menuItems = [
-  { href: '/', label: 'Home', icon: Home },
-  { href: '/about', label: 'About', icon: User },
-  { href: '/experience', label: 'Experience', icon: Briefcase },
-  { href: '/projects', label: 'Projects', icon: Code },
-  { href: '/contact', label: 'Contact', icon: Mail },
+  { href: '#home', label: 'Home', icon: Home },
+  { href: '#about', label: 'About', icon: User },
+  { href: '#experience', label: 'Experience', icon: Briefcase },
+  { href: '#projects', label: 'Projects', icon: Code },
+  { href: '#contact', label: 'Contact', icon: Mail },
 ];
 
 const socialLinks = [
   { href: 'https://github.com/ARJUNRAWAT-DEL', icon: Github, label: 'GitHub' },
   { href: 'https://www.linkedin.com/in/rwtarjun/', icon: Linkedin, label: 'LinkedIn' },
-  { href: '/resume.pdf', icon: FileText, label: 'Resume' },
+  { href: '/arjun_rawat_resume.pdf', icon: FileText, label: 'Resume' },
 ];
 
 export default function Sidebar() {
@@ -114,6 +114,45 @@ export default function Sidebar() {
 }
 
 function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSidebar: () => void }) {
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const sections = ['home', 'about', 'experience', 'projects', 'contact'];
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '-50px 0px -50px 0px'
+      }
+    );
+
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleNavClick = (href: string) => {
+    closeSidebar();
+    const elementId = href.replace('#', '');
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(elementId);
+    }
+  };
+
   return (
     <>
       {/* Header */}
@@ -147,7 +186,8 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
       <nav className="flex-1 p-4 space-y-2" suppressHydrationWarning={true}>
         {menuItems.map((item, index) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href;
+          const sectionId = item.href.replace('#', '');
+          const isActive = activeSection === sectionId;
           
           return (
             <motion.div
@@ -156,10 +196,9 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Link
-                href={item.href}
-                onClick={closeSidebar}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
+              <button
+                onClick={() => handleNavClick(item.href)}
+                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
                   isActive
                     ? 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg'
                     : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
@@ -178,7 +217,7 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
                     className="ml-auto w-2 h-2 bg-white rounded-full"
                   />
                 )}
-              </Link>
+              </button>
             </motion.div>
           );
         })}
