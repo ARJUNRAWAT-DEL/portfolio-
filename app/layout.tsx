@@ -394,9 +394,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Footer />
               </div>
             </div>
-            <ClientOnly>
-              <ArjunAI />
-            </ClientOnly>
             <Analytics />
           </ThemeProvider>
         </ExtensionErrorBoundary>
