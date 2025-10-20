@@ -6,7 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "type-check": "tsc --noEmit",
+    "analyze": "ANALYZE=true npm run build",
+    "sitemap": "next build && next export",
+    "accessibility-check": "echo 'Run accessibility audit with your preferred tool'",
+    "performance-test": "echo 'Run performance tests with Lighthouse or similar tools'"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
