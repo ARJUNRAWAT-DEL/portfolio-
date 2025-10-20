@@ -9,18 +9,78 @@ import HydrationProtection from "../components/HydrationProtection";
 import HydrationFix from "../components/HydrationFix";
 import ClientOnly from "../components/ClientOnly";
 import ArjunAI from "../components/ArjunAI";
+import PerformanceMonitor from "../components/PerformanceMonitor";
+import AccessibilityEnhancer from "../components/AccessibilityEnhancer";
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 
 export const metadata = {
-  title: "Arjun Rawat | Portfolio",
-  description: "My professional portfolio website",
+  title: "Arjun Rawat | Full Stack Developer & Software Engineer",
+  description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. Explore my portfolio of innovative projects and technical expertise.",
+  keywords: "Arjun Rawat, Full Stack Developer, React Developer, Next.js, JavaScript, TypeScript, Web Development, Software Engineer, Portfolio",
+  author: "Arjun Rawat",
+  robots: "index, follow",
+  canonical: "https://arjunrawat.dev",
+  openGraph: {
+    title: "Arjun Rawat | Full Stack Developer & Software Engineer",
+    description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies.",
+    type: "website",
+    locale: "en_US",
+    siteName: "Arjun Rawat Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Arjun Rawat - Full Stack Developer Portfolio"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arjun Rawat | Full Stack Developer",
+    description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies.",
+    images: ["/og-image.jpg"]
+  },
+  verification: {
+    google: "your-google-verification-code",
+    yandex: "your-yandex-verification-code"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <head>
+        {/* Preconnect to external domains for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.resend.com" />
+        
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://vercel.live" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com" />
+        
+        {/* Viewport and responsive meta tags */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        
+        {/* Favicon and app icons */}
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        
+        {/* Security headers */}
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta httpEquiv="X-Frame-Options" content="DENY" />
+        <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
+        
+        {/* Performance hints */}
+        <meta httpEquiv="Accept-CH" content="DPR, Viewport-Width, Width" />
+        
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -379,6 +439,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ClientErrorSuppression />
           <HydrationProtection />
           <HydrationFix />
+          <ClientOnly>
+            <PerformanceMonitor />
+            <AccessibilityEnhancer />
+          </ClientOnly>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <StaticBackground />
             <ClientOnly>
