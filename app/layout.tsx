@@ -9,18 +9,15 @@ import HydrationProtection from "../components/HydrationProtection";
 import HydrationFix from "../components/HydrationFix";
 import ClientOnly from "../components/ClientOnly";
 import ArjunAI from "../components/ArjunAI";
-import PerformanceMonitor from "../components/PerformanceMonitor";
-import AccessibilityEnhancer from "../components/AccessibilityEnhancer";
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 
 export const metadata = {
   title: "Arjun Rawat | Full Stack Developer & Software Engineer",
   description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. Explore my portfolio of innovative projects and technical expertise.",
-  keywords: "Arjun Rawat, Full Stack Developer, React Developer, Next.js, JavaScript, TypeScript, Web Development, Software Engineer, Portfolio",
-  author: "Arjun Rawat",
+  keywords: ["Arjun Rawat", "Full Stack Developer", "React Developer", "Next.js", "JavaScript", "TypeScript", "Web Development", "Software Engineer", "Portfolio"],
+  authors: [{ name: "Arjun Rawat" }],
   robots: "index, follow",
-  canonical: "https://arjunrawat.dev",
   openGraph: {
     title: "Arjun Rawat | Full Stack Developer & Software Engineer",
     description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies.",
@@ -41,10 +38,6 @@ export const metadata = {
     title: "Arjun Rawat | Full Stack Developer",
     description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies.",
     images: ["/og-image.jpg"]
-  },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code"
   }
 };
 
@@ -439,10 +432,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ClientErrorSuppression />
           <HydrationProtection />
           <HydrationFix />
-          <ClientOnly>
-            <PerformanceMonitor />
-            <AccessibilityEnhancer />
-          </ClientOnly>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <StaticBackground />
             <ClientOnly>
