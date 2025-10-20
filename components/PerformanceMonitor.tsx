@@ -21,7 +21,8 @@ export default function PerformanceMonitor() {
         const fidObserver = new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
             if (entry.entryType === 'first-input') {
-              console.log('FID:', entry.processingStart - entry.startTime, 'ms');
+              const fidEntry = entry as any; // Type assertion for FID entry
+              console.log('FID:', fidEntry.processingStart - fidEntry.startTime, 'ms');
             }
           }
         });
@@ -31,8 +32,9 @@ export default function PerformanceMonitor() {
         const clsObserver = new PerformanceObserver((list) => {
           let clsValue = 0;
           for (const entry of list.getEntries()) {
-            if (!entry.hadRecentInput) {
-              clsValue += entry.value;
+            const clsEntry = entry as any; // Type assertion for CLS entry
+            if (!clsEntry.hadRecentInput) {
+              clsValue += clsEntry.value;
             }
           }
           console.log('CLS:', clsValue);
@@ -49,8 +51,8 @@ export default function PerformanceMonitor() {
             'TCP Connection': navigation.connectEnd - navigation.connectStart,
             'Request': navigation.responseStart - navigation.requestStart,
             'Response': navigation.responseEnd - navigation.responseStart,
-            'DOM Processing': navigation.domComplete - navigation.domLoading,
-            'Total Load Time': navigation.loadEventEnd - navigation.navigationStart
+            'DOM Processing': navigation.domComplete - navigation.domContentLoadedEventStart,
+            'Total Load Time': navigation.loadEventEnd - navigation.fetchStart
           });
         }
       });

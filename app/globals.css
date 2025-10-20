@@ -113,7 +113,6 @@ section {
   border-radius: 4px !important;
 }
 
-/* Screen Reader Only Content */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -126,7 +125,7 @@ section {
   border: 0;
 }
 
-.sr-only.focus-within:not-sr-only {
+.sr-only:focus-within {
   position: static;
   width: auto;
   height: auto;
