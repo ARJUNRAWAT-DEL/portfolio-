@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { Rocket, Home, User, Briefcase, Code, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import ThemeToggle from './ThemeToggle';
 import { JapaneseColors, JapaneseShadows } from '../lib/japaneseColors';
 
@@ -16,6 +17,7 @@ const navItems = [
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMounted, setIsMounted] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     setIsMounted(true);
@@ -67,7 +69,9 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className="fixed top-0 left-0 right-0 z-40"
       style={{
-        background: `linear-gradient(180deg, rgba(25, 25, 112, 0.3) 0%, rgba(25, 25, 112, 0.1) 30%, transparent 100%)`,
+        background: theme === 'dark'
+          ? `linear-gradient(180deg, rgba(25, 25, 112, 0.3) 0%, rgba(25, 25, 112, 0.1) 30%, transparent 100%)`
+          : `linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 100%)`,
         backdropFilter: 'blur(5px)',
         WebkitBackdropFilter: 'blur(5px)',
         borderBottom: 'none'
@@ -88,10 +92,10 @@ export default function Navbar() {
             <Rocket className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-lg font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className={`text-lg font-bold ${theme === 'dark' ? 'bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent' : 'text-gray-900'}`}>
               Arjun Rawat
             </h1>
-            <p className="text-xs text-gray-300">Data Science Enthusiast</p>
+            <p className={`text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Data Science Enthusiast</p>
           </div>
         </motion.div>
 
@@ -113,7 +117,11 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + index * 0.05 }}
-                className="relative px-3 py-2 text-sm font-medium text-gray-200 hover:text-white transition-colors group"
+                className={`relative px-3 py-2 text-sm font-medium transition-colors group ${
+                  theme === 'dark' 
+                    ? 'text-gray-200 hover:text-white' 
+                    : 'text-gray-700 hover:text-gray-900'
+                }`}
               >
                 <div className="flex items-center gap-2">
                   <Icon size={16} />
@@ -150,7 +158,11 @@ export default function Navbar() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent"
+        className={`h-px bg-gradient-to-r ${
+          theme === 'dark'
+            ? 'from-transparent via-cyan-500/20 to-transparent'
+            : 'from-transparent via-blue-300/30 to-transparent'
+        }`}
       />
     </motion.nav>
   );

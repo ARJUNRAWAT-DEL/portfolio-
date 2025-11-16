@@ -1,7 +1,7 @@
 import "./globals.css";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import SpaceBackground from "../components/SpaceBackground";
+import ThemeBackground from "../components/ThemeBackground";
 import StaticBackground from "../components/StaticBackground";
 import ExtensionErrorBoundary from "../components/ExtensionErrorBoundary";
 import ClientErrorSuppression from "../components/ClientErrorSuppression";
@@ -435,7 +435,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <StaticBackground />
             <ClientOnly>
-              <SpaceBackground />
+              <ThemeBackground />
             </ClientOnly>
             <ClientOnly>
               <Navbar />

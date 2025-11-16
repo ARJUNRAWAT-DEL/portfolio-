@@ -26,6 +26,70 @@ html, body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* Light Mode Specific Styles */
+body {
+  color-scheme: light;
+}
+
+body:not(.dark) {
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #7a7a7a;
+  --bg-primary: #ffffff;
+  --bg-secondary: rgba(255, 255, 255, 0.8);
+  --border-light: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Mode Specific Styles */
+body.dark {
+  color-scheme: dark;
+  --text-primary: #ffffff;
+  --text-secondary: #e5e5e5;
+  --text-tertiary: #a0a0a0;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: rgba(15, 15, 15, 0.8);
+  --border-light: rgba(255, 255, 255, 0.1);
+}
+
+/* Light Mode Card Enhancement */
+body:not(.dark) section {
+  color: var(--text-primary);
+}
+
+body:not(.dark) h1,
+body:not(.dark) h2,
+body:not(.dark) h3,
+body:not(.dark) h4,
+body:not(.dark) h5,
+body:not(.dark) h6 {
+  color: #0d0d0d;
+  font-weight: 700;
+}
+
+body:not(.dark) p {
+  color: var(--text-secondary);
+}
+
+body:not(.dark) button,
+body:not(.dark) a {
+  transition: all 0.3s ease;
+}
+
+/* Light Mode Card Styles */
+body:not(.dark) [class*="card"],
+body:not(.dark) [class*="Card"] {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(129, 212, 255, 0.2) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+body:not(.dark) [class*="card"]:hover,
+body:not(.dark) [class*="Card"]:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-2px);
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
