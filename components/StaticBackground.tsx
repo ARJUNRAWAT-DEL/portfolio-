@@ -1,4 +1,22 @@
+"use client";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
 export default function StaticBackground() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  // Only show static stars in dark mode
+  if (theme !== "dark") {
+    return null;
+  }
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       <div className="absolute inset-0 bg-black" />
