@@ -13,8 +13,7 @@ import {
   Github, 
   Linkedin,
   FileText,
-  Code,
-  Rocket
+  Code
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
@@ -169,21 +168,7 @@ function SidebarContent({ pathname, closeSidebar }: { pathname: string; closeSid
       {/* Header */}
       <div className="p-6 border-b border-gray-200 dark:border-gray-700/50" suppressHydrationWarning={true}>
         <div className="flex items-center justify-between" suppressHydrationWarning={true}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex items-center space-x-3"
-            suppressHydrationWarning={true}
-          >
-            <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center" suppressHydrationWarning={true}>
-              <Rocket className="w-6 h-6 text-white" />
-            </div>
-            <div suppressHydrationWarning={true}>
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">Arjun Rawat</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Data Science Enthusiast</p>
-            </div>
-          </motion.div>
-          
+          {/* Close button for mobile */}
           <button
             onClick={closeSidebar}
             className="lg:hidden p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"

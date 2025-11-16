@@ -1,6 +1,6 @@
 import "./globals.css";
 import Footer from "../components/Footer";
-import Sidebar from "../components/Sidebar";
+import Navbar from "../components/Navbar";
 import SpaceBackground from "../components/SpaceBackground";
 import StaticBackground from "../components/StaticBackground";
 import ExtensionErrorBoundary from "../components/ExtensionErrorBoundary";
@@ -437,13 +437,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ClientOnly>
               <SpaceBackground />
             </ClientOnly>
+            <ClientOnly>
+              <Navbar />
+            </ClientOnly>
             <div className="relative z-10 flex" suppressHydrationWarning>
-              <Sidebar />
               <ClientOnly>
                 <ArjunAI />
               </ClientOnly>
-              <div className="flex-1 lg:ml-72">
-                <main className="min-h-screen p-4 sm:p-6 lg:p-8" suppressHydrationWarning>{children}</main>
+              <div className="flex-1">
+                <main className="min-h-screen p-4 sm:p-6 lg:p-8 pt-20" suppressHydrationWarning>{children}</main>
                 <Footer />
               </div>
             </div>
