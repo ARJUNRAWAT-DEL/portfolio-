@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { JapaneseColors, JapaneseShadows } from "../lib/japaneseColors";
 
 interface ProjectCardProps {
   title: string;
@@ -19,6 +20,13 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
+  // Alternate Japanese colors for visual interest
+  const colorScheme = {
+    primary: JapaneseColors.sakuraPink,
+    secondary: JapaneseColors.gold,
+    accent: JapaneseColors.matchaGreen,
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, rotateX: -15 }}
@@ -28,98 +36,69 @@ export default function ProjectCard({
         y: -15,
         rotateX: 5,
         rotateY: 2,
-        boxShadow: "0 25px 50px rgba(99, 102, 241, 0.2), 0 0 50px rgba(139, 92, 246, 0.1)"
       }}
       whileTap={{ scale: 0.98 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group p-6 bg-gradient-to-br from-gray-800/60 via-gray-800/40 to-gray-900/60 backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-700/50 hover:border-indigo-500/50 transition-all duration-500 relative overflow-hidden cursor-pointer"
+      className="group p-6 bg-white/95 dark:bg-gray-800/70 backdrop-blur-lg rounded-3xl border border-white/30 dark:border-gray-700/30 transition-all duration-500 relative overflow-hidden cursor-pointer"
       style={{ 
         transformStyle: "preserve-3d",
-        perspective: "1000px"
+        perspective: "1000px",
+        boxShadow: isHovered ? JapaneseShadows.elevated : JapaneseShadows.soft,
       }}
     >
-      {/* Animated background glow */}
+      {/* Animated background glow with Japanese colors */}
       <motion.div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100"
+        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300"
         animate={{
           background: isHovered 
             ? [
-                "radial-gradient(circle at 20% 50%, rgba(99,102,241,0.1) 0%, transparent 50%)",
-                "radial-gradient(circle at 80% 50%, rgba(139,92,246,0.1) 0%, transparent 50%)",
-                "radial-gradient(circle at 50% 20%, rgba(236,72,153,0.1) 0%, transparent 50%)",
-                "radial-gradient(circle at 50% 80%, rgba(59,130,246,0.1) 0%, transparent 50%)",
-                "radial-gradient(circle at 20% 50%, rgba(99,102,241,0.1) 0%, transparent 50%)"
+                `radial-gradient(circle at 20% 50%, ${colorScheme.primary} 0%, transparent 50%)`,
+                `radial-gradient(circle at 80% 50%, ${colorScheme.secondary} 0%, transparent 50%)`,
+                `radial-gradient(circle at 50% 20%, ${colorScheme.accent} 0%, transparent 50%)`,
+                `radial-gradient(circle at 20% 50%, ${colorScheme.primary} 0%, transparent 50%)`
               ]
             : []
         }}
         transition={{ duration: 4, repeat: Infinity }}
       />
 
-      {/* Floating particles effect */}
-      {isHovered && [1, 2, 3, 4, 5, 6].map((i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full"
-          initial={{ 
-            x: Math.random() * 300, 
-            y: Math.random() * 200,
-            opacity: 0,
-            scale: 0
-          }}
-          animate={{
-            x: [
-              Math.random() * 300,
-              Math.random() * 300,
-              Math.random() * 300
-            ],
-            y: [
-              Math.random() * 200,
-              Math.random() * 200,
-              Math.random() * 200
-            ],
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0]
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      ))}
-
-      {/* Project emoji/icon with advanced animations */}
+      {/* Project emoji/icon with subtle animations */}
       <motion.div
         className="text-5xl mb-4 relative"
         animate={{
-          rotate: isHovered ? [0, 10] : 0,
-          scale: isHovered ? [1, 1.2] : 1,
+          rotate: isHovered ? [0, 8] : 0,
+          scale: isHovered ? [1, 1.15] : 1,
           y: isHovered ? [0, -5] : 0
         }}
         transition={{ 
-          duration: 1,
+          duration: 0.8,
           type: "tween",
           ease: "easeInOut"
         }}
       >
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100"
+          className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-20"
+          style={{ backgroundColor: colorScheme.primary }}
           animate={{
-            scale: isHovered ? [1, 1.5] : 1
+            scale: isHovered ? [1, 1.4] : 1
           }}
           transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
         />
         <span className="relative z-10">{emoji}</span>
       </motion.div>
 
-      {/* Title with enhanced effects */}
+      {/* Title with Japanese gradient */}
       <motion.h2
         className="text-2xl font-bold mb-3 relative"
         whileHover={{ scale: 1.02 }}
       >
         <motion.span
-          className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+          className="bg-gradient-to-r bg-clip-text text-transparent"
+          style={{
+            backgroundImage: `linear-gradient(90deg, ${colorScheme.primary}, ${colorScheme.secondary}, ${colorScheme.accent})`,
+            backgroundSize: "200% auto"
+          }}
           animate={{
             backgroundPosition: isHovered ? ["0%", "100%", "0%"] : ["0%"]
           }}
@@ -128,16 +107,16 @@ export default function ProjectCard({
             repeat: isHovered ? Infinity : 0,
             ease: "linear"
           }}
-          style={{
-            backgroundSize: "200% auto"
-          }}
         >
           {title}
         </motion.span>
         
         {isHovered && (
           <motion.div
-            className="absolute -inset-2 bg-gradient-to-r from-indigo-400/10 via-purple-400/10 to-pink-400/10 blur-lg -z-10"
+            className="absolute -inset-2 blur-lg -z-10"
+            style={{
+              backgroundColor: `${colorScheme.primary}10`,
+            }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -145,18 +124,18 @@ export default function ProjectCard({
         )}
       </motion.h2>
 
-      {/* Description with typewriter effect */}
+      {/* Description */}
       <motion.p
-        className="text-gray-300 mb-4 leading-relaxed"
+        className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed"
         animate={{
-          color: isHovered ? "#e5e7eb" : "#d1d5db"
+          color: isHovered ? (typeof document !== 'undefined' && document.documentElement.classList.contains('dark') ? "#e5e7eb" : "#1f2937") : (typeof document !== 'undefined' && document.documentElement.classList.contains('dark') ? "#d1d5db" : "#4b5563")
         }}
         transition={{ duration: 0.3 }}
       >
         {description}
       </motion.p>
 
-      {/* Enhanced Tech stack */}
+      {/* Tech stack with Japanese styling */}
       <motion.div 
         className="flex flex-wrap gap-2 mb-6"
         variants={{
@@ -181,37 +160,47 @@ export default function ProjectCard({
             whileHover={{ 
               scale: 1.1,
               y: -2,
-              backgroundColor: "rgba(99, 102, 241, 0.3)",
-              borderColor: "rgba(99, 102, 241, 0.6)",
-              boxShadow: "0 4px 12px rgba(99, 102, 241, 0.2)"
             }}
-            className="px-3 py-1 text-xs bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-indigo-300 rounded-full border border-indigo-500/30 backdrop-blur-sm transition-all duration-200 cursor-pointer"
+            className="px-3 py-1.5 text-xs rounded-lg border transition-all duration-200 cursor-pointer font-medium"
+            style={{
+              backgroundColor: `${colorScheme.primary}15`,
+              color: colorScheme.primary,
+              borderColor: `${colorScheme.primary}40`,
+              boxShadow: JapaneseShadows.subtle,
+            }}
           >
             {techItem}
           </motion.span>
         ))}
       </motion.div>
 
-      {/* Enhanced CTA Button */}
+      {/* CTA Button with Japanese aesthetic */}
       <motion.a
         href={link}
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ 
           scale: 1.05,
-          boxShadow: "0 10px 30px rgba(99, 102, 241, 0.4)"
+          boxShadow: JapaneseShadows.elevated,
         }}
         whileTap={{ scale: 0.95 }}
-        className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 rounded-2xl text-white font-semibold transition-all duration-300 shadow-lg relative overflow-hidden group"
+        className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl text-white font-semibold transition-all duration-300 relative overflow-hidden group"
+        style={{
+          background: `linear-gradient(135deg, ${colorScheme.primary}, ${colorScheme.secondary})`,
+          boxShadow: JapaneseShadows.medium,
+        }}
       >
         {/* Button shine effect */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          className="absolute inset-0"
+          style={{ 
+            background: "linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent)"
+          }}
           animate={{
             x: isHovered ? ["-100%", "100%"] : ["-100%"]
           }}
           transition={{
-            duration: 1,
+            duration: 0.8,
             repeat: isHovered ? Infinity : 0,
             repeatDelay: 1
           }}
@@ -223,10 +212,10 @@ export default function ProjectCard({
           className="relative z-10"
           animate={{ 
             x: isHovered ? [0, 5, 0] : [0],
-            rotate: isHovered ? [0, 10, 0] : [0]
+            rotate: isHovered ? [0, 8, 0] : [0]
           }}
           transition={{ 
-            duration: 1.5, 
+            duration: 1.2, 
             repeat: isHovered ? Infinity : 0 
           }}
         >
@@ -236,12 +225,13 @@ export default function ProjectCard({
 
       {/* Corner accent decoration */}
       <motion.div
-        className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-transparent"
+        className="absolute top-0 right-0 w-24 h-24"
         style={{
-          clipPath: "polygon(100% 0%, 0% 0%, 100% 100%)"
+          clipPath: "polygon(100% 0%, 0% 0%, 100% 100%)",
+          backgroundColor: `${colorScheme.primary}10`,
         }}
         animate={{
-          opacity: isHovered ? 0.4 : 0.1,
+          opacity: isHovered ? 0.3 : 0.05,
           scale: isHovered ? 1.1 : 1
         }}
         transition={{ duration: 0.3 }}
@@ -249,7 +239,10 @@ export default function ProjectCard({
 
       {/* Bottom edge glow */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-0 group-hover:opacity-100"
+        className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100"
+        style={{
+          background: `linear-gradient(to right, ${colorScheme.primary}50, ${colorScheme.secondary}50, ${colorScheme.accent}50)`,
+        }}
         animate={{
           scaleX: isHovered ? [0, 1] : [0]
         }}

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -32,7 +32,7 @@ export default function MagneticButton({
   const rotateX = useTransform(springY, [-50, 50], [5, -5]);
   const rotateY = useTransform(springX, [-50, 50], [-5, 5]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!ref.current) return;
     
     const rect = ref.current.getBoundingClientRect();
@@ -45,13 +45,13 @@ export default function MagneticButton({
     const magnetStrength = 0.3;
     x.set(distanceX * magnetStrength);
     y.set(distanceY * magnetStrength);
-  };
+  }, [x, y]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setIsHovered(false);
     x.set(0);
     y.set(0);
-  };
+  }, [x, y]);
 
   const buttonContent = (
     <motion.div
