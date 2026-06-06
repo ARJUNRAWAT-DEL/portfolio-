@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Check, AlertCircle } from "lucide-react";
 
@@ -42,10 +42,10 @@ export default function ContactForm({
         className="space-y-6"
       >
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+          <h3 className="text-2xl font-bold text-white mb-2">
             Get In Touch
           </h3>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-400">
             Have a question or want to collaborate? I'd love to hear from you. Drop me a message!
           </p>
         </div>
@@ -94,16 +94,16 @@ export default function ContactForm({
                 </motion.div>
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{contact.label}</p>
+                <p className="text-sm text-gray-400">{contact.label}</p>
                 {contact.href ? (
                   <a
                     href={contact.href}
-                    className="font-semibold text-gray-900 dark:text-white hover:text-cyan-400 transition-colors"
+                    className="font-semibold text-white hover:text-cyan-400 transition-colors"
                   >
                     {contact.value}
                   </a>
                 ) : (
-                  <p className="font-semibold text-gray-900 dark:text-white">
+                  <p className="font-semibold text-white">
                     {contact.value}
                   </p>
                 )}
@@ -126,7 +126,7 @@ export default function ContactForm({
             variants={inputVariants}
             animate={focusedField === "name" ? "focus" : "blur"}
           >
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Your Name
             </label>
             <input
@@ -138,7 +138,7 @@ export default function ContactForm({
               onFocus={() => setFocusedField("name")}
               onBlur={() => setFocusedField(null)}
               placeholder="Arjun Rawat"
-              className="w-full px-4 py-3 bg-white/10 dark:bg-gray-800/50 border border-white/20 dark:border-gray-700/50 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none transition-all"
+              className="w-full px-4 py-3 bg-gray-800 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none transition-all"
             />
           </motion.div>
 
@@ -147,7 +147,7 @@ export default function ContactForm({
             variants={inputVariants}
             animate={focusedField === "email" ? "focus" : "blur"}
           >
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Your Email
             </label>
             <input
@@ -159,7 +159,7 @@ export default function ContactForm({
               onFocus={() => setFocusedField("email")}
               onBlur={() => setFocusedField(null)}
               placeholder="your.email@example.com"
-              className="w-full px-4 py-3 bg-white/10 dark:bg-gray-800/50 border border-white/20 dark:border-gray-700/50 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none transition-all"
+              className="w-full px-4 py-3 bg-gray-800 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none transition-all"
             />
           </motion.div>
 
@@ -168,7 +168,7 @@ export default function ContactForm({
             variants={inputVariants}
             animate={focusedField === "message" ? "focus" : "blur"}
           >
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Your Message
             </label>
             <textarea
@@ -180,7 +180,7 @@ export default function ContactForm({
               onBlur={() => setFocusedField(null)}
               placeholder="Tell me about your project or idea..."
               rows={4}
-              className="w-full px-4 py-3 bg-white/10 dark:bg-gray-800/50 border border-white/20 dark:border-gray-700/50 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none transition-all resize-none"
+              className="w-full px-4 py-3 bg-gray-800 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none transition-all resize-none"
             />
           </motion.div>
 
@@ -193,8 +193,8 @@ export default function ContactForm({
                 exit={{ opacity: 0, y: -10 }}
                 className={`flex items-center gap-2 p-3 rounded-lg ${
                   submitMessage.includes("successfully")
-                    ? "bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30"
-                    : "bg-red-500/20 text-red-700 dark:text-red-400 border border-red-500/30"
+                    ? "bg-green-500/20 text-green-700 border border-green-500/30"
+                    : "bg-red-500/20 text-red-700 border border-red-500/30"
                 }`}
               >
                 {submitMessage.includes("successfully") ? (
@@ -243,6 +243,3 @@ export default function ContactForm({
     </div>
   );
 }
-
-// For AnimatePresence
-import { AnimatePresence } from "framer-motion";

@@ -1,173 +1,132 @@
 "use client";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ExternalLink, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    {
-      icon: Github,
-      href: "https://github.com/ARJUNRAWAT-DEL",
-      label: "GitHub",
-      color: "hover:text-gray-900 dark:hover:text-white",
-    },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/rwtarjun/",
-      label: "LinkedIn",
-      color: "hover:text-blue-600",
-    },
-    {
-      icon: Mail,
-      href: "mailto:arjunrawat4741@gmail.com",
-      label: "Email",
-      color: "hover:text-red-500",
-    },
+    { icon: Github,   href: "https://github.com/ARJUNRAWAT-DEL",        label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/rwtarjun/",     label: "LinkedIn" },
+    { icon: Mail,     href: "mailto:arjunrawat4741@gmail.com",           label: "Email" },
   ];
 
   const quickLinks = [
-    { label: "About", href: "#about" },
+    { label: "About",      href: "#about" },
     { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: "Projects",   href: "#projects" },
+    { label: "Contact",    href: "#contact" },
   ];
 
   return (
-    <footer className="relative bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent dark:from-black dark:via-black/80 backdrop-blur-xl border-t border-cyan-400/10 dark:border-white/10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Brand Section */}
+    <footer
+      className="relative border-t"
+      style={{
+        background: 'rgba(8, 8, 15, 0.97)',
+        borderColor: 'rgba(255,255,255,0.07)',
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+        <div className="grid md:grid-cols-3 gap-10 mb-10">
+
+          {/* Brand */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="space-y-3"
+            className="space-y-4"
           >
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">AR</span>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-violet-600 flex items-center justify-center text-white text-sm font-bold">
+                AR
               </div>
               <div>
-                <h3 className="font-bold text-white">Arjun Rawat</h3>
-                <p className="text-xs text-gray-400">Data Science & AI</p>
+                <p className="font-semibold text-white text-sm leading-none">Arjun Rawat</p>
+                <p className="text-xs text-white/35 mt-0.5">Data Science · AI · Engineering</p>
               </div>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Building intelligent solutions through data science and AI/ML technologies.
+            <p className="text-sm text-white/40 leading-relaxed">
+              Building intelligent, production-ready systems at the intersection of data and software engineering.
             </p>
           </motion.div>
 
           {/* Quick Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="space-y-3"
+            className="space-y-4"
           >
-            <h4 className="font-semibold text-white text-sm uppercase tracking-wider">Quick Links</h4>
+            <p className="text-xs font-semibold text-white/50 uppercase tracking-widest">Navigate</p>
             <div className="space-y-2">
-              {quickLinks.map((link, index) => (
+              {quickLinks.map((link, i) => (
                 <motion.a
-                  key={index}
+                  key={i}
                   href={link.href}
-                  whileHover={{ x: 5 }}
-                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400 transition-colors"
+                  whileHover={{ x: 4 }}
+                  className="flex items-center gap-2 text-sm text-white/40 hover:text-white/80 transition-colors"
                 >
-                  <span className="w-1 h-1 bg-cyan-400 rounded-full" />
+                  <span className="w-1 h-1 rounded-full bg-violet-500" />
                   {link.label}
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Connect */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-3"
+            className="space-y-4"
           >
-            <h4 className="font-semibold text-white text-sm uppercase tracking-wider">Connect</h4>
+            <p className="text-xs font-semibold text-white/50 uppercase tracking-widest">Connect</p>
             <div className="flex gap-3">
-              {socialLinks.map((social, index) => {
-                const Icon = social.icon;
-                return (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center text-gray-400 transition-all ${social.color}`}
-                    title={social.label}
-                  >
-                    <Icon size={18} />
-                  </motion.a>
-                );
-              })}
+              {socialLinks.map(({ icon: Icon, href, label }, i) => (
+                <motion.a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.92 }}
+                  title={label}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-white/40 hover:text-white hover:bg-violet-600/20 border border-white/08 transition-all"
+                  style={{ border: '1px solid rgba(255,255,255,0.07)' }}
+                >
+                  <Icon size={16} />
+                </motion.a>
+              ))}
             </div>
+            <p className="text-xs text-white/30">Vilnius, Lithuania · Open to remote</p>
           </motion.div>
         </div>
 
         {/* Divider */}
-        <motion.div
-          className="h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent my-8"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.8 }}
-        />
+        <div className="h-px mb-8" style={{ background: 'rgba(255,255,255,0.06)' }} />
 
-        {/* Bottom Section */}
+        {/* Bottom */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500"
+          className="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/25"
         >
           <div className="flex items-center gap-1">
             <span>© {currentYear} Arjun Rawat. Built with</span>
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              <Heart size={16} className="text-red-500" fill="currentColor" />
+            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1.5, repeat: Infinity }}>
+              <Heart size={12} className="text-violet-400" fill="currentColor" />
             </motion.div>
-            <span>and cutting-edge tech.</span>
+            <span>Next.js &amp; Tailwind.</span>
           </div>
-
-          <div className="flex items-center gap-4">
-            <a
-              href="/sitemap.xml"
-              className="hover:text-cyan-400 transition-colors"
-            >
-              Sitemap
-            </a>
-            <a
-              href="/robots.txt"
-              className="hover:text-cyan-400 transition-colors"
-            >
-              Robots
-            </a>
-          </div>
+          <a href="/Arjun-rawat-cv.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white/60 transition-colors">
+            Download CV
+          </a>
         </motion.div>
       </div>
-
-      {/* Animated gradient line at bottom */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
-        animate={{
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-        }}
-      />
     </footer>
   );
 }

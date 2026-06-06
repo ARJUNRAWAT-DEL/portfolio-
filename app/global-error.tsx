@@ -16,12 +16,12 @@ export default function GlobalError({
 
   return (
     <html>
-      <body className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      <body className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="text-center p-8">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
             Something went wrong!
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
+          <p className="text-gray-600 mb-6">
             We apologize for the inconvenience. Please try refreshing the page.
           </p>
           <button

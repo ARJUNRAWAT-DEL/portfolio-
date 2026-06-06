@@ -2,23 +2,12 @@
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { ArrowRight, Download, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
-import { JapaneseColors, JapaneseShadows } from "../lib/japaneseColors";
-import ProjectCard from "../components/ProjectCard";
-import MagneticButton from "../components/MagneticButton";
-import SkillCard from "../components/SkillCard";
-import ExperienceCard from "../components/ExperienceCard";
-import SectionHeader from "../components/SectionHeader";
+import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 import ContactForm from "../components/ContactForm";
-import GradientAccent from "../components/GradientAccent";
+import BentoGrid from "../components/BentoGrid";
 
 // Lazy load heavy animation components
-const FloatingParticles = dynamic(() => import("../components/FloatingParticles"), {
-  loading: () => null,
-  ssr: false
-});
-
-const Typewriter = dynamic(() => import("../components/Typewriter"), {
+const SubtleBackground = dynamic(() => import("../components/SubtleBackground"), {
   loading: () => null,
   ssr: false
 });
@@ -30,101 +19,96 @@ export default function HomePage() {
     setIsClient(true);
   }, []);
 
-  // Skills data
-  const skills = [
-    { name: "Python", level: 95, color: "from-blue-500 to-cyan-500" },
-    { name: "SQL/NoSQL", level: 90, color: "from-green-500 to-emerald-500" },
-    { name: "Machine Learning", level: 85, color: "from-purple-500 to-pink-500" },
-    { name: "React/Next.js", level: 80, color: "from-blue-600 to-indigo-600" },
-    { name: "Data Visualization", level: 85, color: "from-yellow-500 to-orange-500" },
-    { name: "Google Cloud Platform", level: 75, color: "from-green-600 to-teal-600" },
-  ];
-
   // Experience data
   const experiences = [
     {
-      role: "Data Science Intern",
-      company: "Labmentix",
-      period: "July 2025 - November 2025, Remote",
+      role: "Data Intake Specialist",
+      company: "Cencora",
+      period: "Nov 2025 – May 2026, Vilnius, Lithuania",
       details: [
-        "Learning and applying Machine Learning algorithms (supervised & unsupervised)",
-        "Working with Python libraries: NumPy, Pandas, Scikit-learn",
-        "Built forecasting, preprocessing and analysis model evaluation and optimization",
-        "Built data visualization using Matplotlib and Seaborn"
+        "Maintained efficient systems ensuring timely and accurate information flow to clients, handling intake of all program-specific correspondence",
+        "Logged and updated data in relevant databases with high accuracy; ensured compliance with all policies, procedures, and regulatory requirements",
+        "Coordinated sharing of program-specific information with internal teams using Microsoft Teams and SharePoint"
+      ],
+      technologies: ["Data Management", "SharePoint", "Microsoft Teams", "Compliance"],
+    },
+    {
+      role: "Data Science with AI/ML Intern",
+      company: "Labmentix",
+      period: "Jul 2025 – Oct 2025, Remote",
+      details: [
+        "Applied supervised and unsupervised ML algorithms for real-world predictive modeling with strong emphasis on performance metrics and cross-validation",
+        "Used Python, Pandas, NumPy, and Scikit-learn for end-to-end data preprocessing, feature engineering, and model optimization",
+        "Created compelling data visualizations using Matplotlib and Seaborn to communicate insights to technical and non-technical stakeholders"
       ],
       technologies: ["Python", "NumPy", "Pandas", "Scikit-learn", "Matplotlib", "Seaborn"],
-      emoji: "🚀"
     },
     {
-      role: "IT Intern",
-      company: "YARA FERTILIZERS INDIA Pvt. Ltd.",
-      period: "June 2025 - October 2025, On-Site",
+      role: "Software Engineer Intern (IT)",
+      company: "Yara International",
+      period: "Jul 2025 – Sep 2025, Delhi, India",
       details: [
-        "Developed and deployed an AI-powered document assistant using FastAPI, PostgreSQL, and NLP",
-        "Achieved 40% improvement in document search efficiency by 25%",
-        "Built machine learning-based web application integrating multiple AI assistants",
-        "Optimized debugging and deployment workflows for large-scale data processing"
+        "Developed an AI-powered document assistant using FastAPI, PostgreSQL (pgvector), and NLP models, improving document summarization efficiency by 25%",
+        "Built and deployed a full-stack AI web application with React frontend and multiple integrated AI assistants, reducing application latency by 20%",
+        "Streamlined debugging and CI/CD deployment pipelines using Git/GitHub, cutting release cycle time by 15%"
       ],
-      technologies: ["Python", "FastAPI", "PostgreSQL", "NLP", "Machine Learning"],
-      emoji: "📊"
+      technologies: ["Python", "FastAPI", "PostgreSQL", "pgvector", "NLP", "React", "Git"],
     },
     {
-      role: "Big Data Engineering Trainee",
+      role: "Big Data Engineer Intern",
       company: "Accenture Baltics",
-      period: "Jan 2024 - Feb 2024, Remote",
+      period: "Jan 2024 – Feb 2024, Vilnius, Lithuania",
       details: [
-        "Built data pipelines and performed data analysis using SQL",
-        "Worked with Google Cloud Platform (GCP) for data engineering and cloud security",
-        "Developed experience with Azure cloud platforms",
-        "Built HDFs for distributed storage and Spark for large-scale data processing"
+        "Worked with AWS, Azure, and GCP to architect scalable data engineering solutions and cloud-based processing pipelines",
+        "Built robust ETL pipelines using Python, SQL, and Apache Spark to process large-scale datasets; implemented NoSQL solutions (DynamoDB) for flexible analytics",
+        "Gained hands-on experience with Hadoop, HDFS, MapReduce, and Kafka for distributed data handling and real-time streaming workflows"
       ],
-      technologies: ["SQL", "Google Cloud Platform", "Azure", "HDFS", "Spark"],
-      emoji: "☁️"
+      technologies: ["AWS", "Azure", "GCP", "Python", "SQL", "Apache Spark", "DynamoDB", "Hadoop", "Kafka"],
     },
     {
-      role: "Education",
-      company: "Vilnius Gediminas Technical University",
-      period: "2022-2026, Vilnius, Lithuania",
+      role: "Bachelor of Science — Information Technology",
+      company: "Vilnius Gediminas Technical University (VILNIUS TECH)",
+      period: "Sep 2022 – Jun 2026, Vilnius, Lithuania",
       details: [
-        "Bachelor's in Information Technology",
-        "Relevant coursework: Data Structures, Algorithms, Database Systems",
-        "Focus on software development, data analysis, and modern IT solutions",
-        "Active participation in tech projects and competitions"
+        "Graduated with a BSc in Information Technology",
+        "Relevant Coursework: Data Structures & Algorithms, Big Data Analytics, Business Analytics, Cloud Computing, Software Engineering, Database Systems",
+        "Applied academic knowledge throughout four real-world internships spanning data science, AI engineering, and big data"
       ],
-      technologies: ["Computer Science", "Information Technology", "Software Engineering"],
-      emoji: "🎓"
+      technologies: ["Information Technology", "Software Engineering", "Big Data", "Cloud Computing"],
     }
   ];
 
   // Projects data
   const projects = [
     {
-      title: "INTELLIDOC - AI Document Intelligence",
-      description: "A comprehensive AI-powered document processing system that can analyze, extract, and summarize information from various document formats. Features advanced NLP capabilities and intelligent document classification.",
-      tech: ["Python", "FastAPI", "NLP", "AI/ML", "Document Processing"],
-      link: "https://github.com/ARJUNRAWAT-DEL/INTELLIDOC",
-      emoji: "📄"
+      title: "Aethel Finance — AI Financial Management Tool",
+      description: "AI-powered personal finance platform with a real-time sentiment-to-liquidity pipeline using Apache Kafka and Spark Streaming to detect market events and trigger automated portfolio adjustments.",
+      tech: ["Python", "LangGraph", "Kafka", "Neo4j", "React", "PostgreSQL", "pgvector"],
+      link: "https://github.com/ARJUNRAWAT-DEL",
+      featured: true,
+      image: null,
+      metrics: ["Real-time Kafka + Spark pipeline", "GraphRAG with Neo4j & LLMs", "Generative UI War Room dashboard"]
     },
     {
-      title: "Multi-Agent Simulator Platform",
-      description: "An advanced simulation platform where multiple AI agents collaborate and interact to solve complex problems. Features real-time agent coordination, task distribution, and performance monitoring.",
-      tech: ["Python", "FastAPI", "AI/ML", "Multi-Agent Systems", "Real-time Simulation"],
+      title: "AI-Powered Document Assistant",
+      description: "AI assistant using NLP and FastAPI to process and summarize 200+ pages in under 5 minutes. Built for Yara International — improved document summarization efficiency by 25% with REST API integration.",
+      tech: ["Python", "FastAPI", "PostgreSQL", "pgvector", "NLP"],
+      link: "https://github.com/ARJUNRAWAT-DEL/INTELLIDOC",
+      metrics: ["200+ pages in under 5 min", "25% efficiency improvement", "REST API integration"]
+    },
+    {
+      title: "Multi-Agent Simulator",
+      description: "Scalable web app where AI assistants collaborate to perform complex tasks, improving task execution efficiency by 30%. Intuitive React frontend with live performance dashboards and real-time agent monitoring.",
+      tech: ["React", "FastAPI", "PostgreSQL", "NLP", "Python"],
       link: "https://github.com/ARJUNRAWAT-DEL/multi-agents-simulator-",
-      emoji: "🤖"
+      metrics: ["30% efficiency improvement", "Real-time dashboards"]
     },
     {
       title: "Smart Retail Analytics Platform",
-      description: "A comprehensive retail analytics solution using machine learning for sales forecasting, customer behavior analysis, and inventory optimization. Features interactive dashboards and predictive modeling.",
-      tech: ["Python", "Machine Learning", "Data Analytics", "SQL", "Visualization"],
+      description: "AI-powered retail analytics dashboard with customer segmentation (RFM & K-Means), demand forecasting, and interactive Plotly visualizations for business decision support.",
+      tech: ["Streamlit", "Python", "PostgreSQL", "Plotly", "Pandas"],
       link: "https://github.com/ARJUNRAWAT-DEL/Smart-Retail-Analytics-Platform",
-      emoji: "📊"
-    },
-    {
-      title: "Personal Portfolio Website",
-      description: "A modern, responsive portfolio website built with Next.js featuring advanced animations, 3D effects, and interactive components. Showcases projects, skills, and professional experience.",
-      tech: ["Next.js", "React", "TypeScript", "Framer Motion", "Tailwind CSS"],
-      link: "https://github.com/ARJUNRAWAT-DEL/portfolio-",
-      emoji: "💼"
+      metrics: ["RFM & K-Means segmentation", "Demand forecasting", "Interactive dashboards"]
     }
   ];
 
@@ -153,6 +137,7 @@ export default function HomePage() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [certFilter, setCertFilter] = useState("All");
   const [submitMessage, setSubmitMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -188,270 +173,215 @@ export default function HomePage() {
 
   return (
     <div className="space-y-0 relative">
-      {/* Floating Particles Background */}
-      <FloatingParticles />
+      {/* Subtle Background */}
+      <SubtleBackground />
       
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center py-20 relative z-10 overflow-hidden"
-        style={{
-          background: `radial-gradient(ellipse at center, ${JapaneseColors.sakuraPink}08 0%, ${JapaneseColors.matchaGreen}08 35%, transparent 70%)`
-        }}
-      >
-        {/* Decorative gradient accents */}
-        <GradientAccent position="top" size="lg" color="gradient" />
-        <GradientAccent position="bottom" size="md" color="sakura" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center space-y-8 max-w-4xl mx-auto px-4 relative z-10"
-        >
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
-            className="w-32 h-32 mx-auto rounded-full relative overflow-hidden border-4 shadow-2xl"
-            style={{
-              borderImage: `linear-gradient(135deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.gold}) 1`,
-              boxShadow: JapaneseShadows.elevated
-            }}
-          >
-            <img
-              src="/arjun-profile.jpg"
-              alt="Arjun Rawat"
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                const parent = e.currentTarget.parentElement;
-                if (parent) {
-                  parent.style.background = `linear-gradient(135deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.matchaGreen})`;
-                  parent.className = "w-32 h-32 mx-auto rounded-full flex items-center justify-center text-4xl relative overflow-hidden border-4 border-white/20 dark:border-gray-700/50";
-                  parent.innerHTML = '<span class="relative z-10">🚀</span>';
-                }
-              }}
-            />
-            <div className="absolute inset-0 rounded-full opacity-30 blur-md animate-pulse" style={{ background: `linear-gradient(135deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.gold})` }}></div>
-          </motion.div>
-
-          <div className="space-y-4">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white"
-            >
-              Hello, I'm{" "}
-              <span className="bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(90deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.matchaGreen}, ${JapaneseColors.gold})` }}>
-                Arjun Rawat
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
-            >
-              <span className="bg-gradient-to-r bg-clip-text text-transparent font-semibold" style={{ backgroundImage: `linear-gradient(90deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.gold})`, display: 'block' }}>
-                <Typewriter 
-                  words={[
-                    "Data Science & AI/ML Enthusiast",
-                    "Software Developer", 
-                    "Tech Innovator",
-                    "Problem Solver",
-                    "Cloud Engineer"
-                  ]}
-                  className="bg-gradient-to-r bg-clip-text text-transparent font-semibold"
-                />
-              </span>
-            </motion.p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-          >
-            <motion.button
-              onClick={() => {
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group flex items-center space-x-2 px-8 py-4 text-white rounded-full font-semibold transition-all duration-300"
-              style={{
-                background: `linear-gradient(135deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.gold})`,
-                boxShadow: JapaneseShadows.medium
-              }}
-            >
-              <span>View My Work</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-            
-            <motion.a
-              href="/arjun_rawat_resume.pdf"
-              target="_blank"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 px-8 py-4 backdrop-blur-sm text-gray-900 dark:text-white rounded-full font-semibold transition-all duration-300"
-              style={{
-                background: "rgba(255, 255, 255, 0.15)",
-                border: `1.5px solid ${JapaneseColors.sakuraPink}40`,
-                boxShadow: JapaneseShadows.subtle
-              }}
-            >
-              <Download size={20} />
-              <span>Download Resume</span>
-            </motion.a>
-          </motion.div>
-        </motion.div>
+      {/* Bento Grid Hero Section */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center py-20 overflow-visible">
+        {/* Gradient fade to transparent at bottom */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-48 z-0 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, transparent, #06060c)' }}
+        />
+        {/* Content layer */}
+        <div className="relative z-10 w-full px-4 sm:px-6">
+          <BentoGrid />
+        </div>
       </section>
 
       {/* About Section */}
       <section id="about" className="min-h-screen flex items-center justify-center py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">About</p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white">Who I Am</h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center space-y-4 sm:space-y-6"
+            className="grid lg:grid-cols-2 gap-12 items-center"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(90deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.matchaGreen}, ${JapaneseColors.gold})` }}>
-              About Me
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-800 dark:text-gray-100 max-w-3xl mx-auto leading-relaxed font-medium">
-              I'm a passionate Data Science & AI/ML Enthusiast and Software Developer, dedicated to creating innovative solutions that bridge technology and real-world impact.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="max-w-sm mx-auto mb-8">
-              <div className="relative">
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  animate={{ 
-                    y: [0, -10, 0],
-                    rotate: [0, 2, -2, 0]
-                  }}
-                  transition={{ 
-                    scale: { duration: 0.8, delay: 0.4 },
-                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                    rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" }
-                  }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    rotateY: 15,
-                    transition: { duration: 0.3 }
-                  }}
-                  className="w-64 h-64 mx-auto rounded-full overflow-hidden shadow-2xl border-8 border-white dark:border-gray-800 cursor-pointer"
-                  style={{ background: `linear-gradient(135deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.matchaGreen})` }}
-                >
+            {/* Left: Photo */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex justify-center"
+            >
+              <motion.div
+                whileHover={{ scale: 1.02, rotate: -1 }}
+                transition={{ duration: 0.3 }}
+                className="relative"
+              >
+                <div className="w-80 h-96 rounded-2xl overflow-hidden shadow-lg" style={{ backgroundColor: '#111111', border: '1px solid rgba(255,255,255,0.1)' }}>
                   <img
                     src="/arjun-profile.jpg"
-                    alt="Arjun Rawat - Professional"
+                    alt="Arjun Rawat"
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      const parent = e.currentTarget.parentElement;
-                      if (parent) {
-                        parent.style.background = `linear-gradient(135deg, ${JapaneseColors.sakuraPink}, ${JapaneseColors.matchaGreen})`;
-                        parent.className = "w-64 h-64 mx-auto rounded-full flex items-center justify-center text-6xl shadow-2xl border-8 border-white dark:border-gray-800";
-                        parent.innerHTML = '<span class="relative z-10 text-white">🚀</span>';
-                      }
-                    }}
                   />
-                </motion.div>
-                <div className="absolute inset-0 rounded-full blur-2xl -z-10" style={{ background: `linear-gradient(135deg, ${JapaneseColors.sakuraPink}30, ${JapaneseColors.matchaGreen}30)` }}></div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right: Text */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="space-y-6 text-left"
+            >
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                I'm Arjun — a BSc Information Technology graduate from Vilnius Gediminas Technical University. Originally from India, I've spent the last four years building at the intersection of data science, AI engineering, and full-stack development in Lithuania.
+              </p>
+
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                Across four internships — at Cencora, Yara International, Labmentix, and Accenture Baltics — I've shipped production AI systems, real-time data pipelines, and full-stack web applications using Python, FastAPI, React, LangGraph, Kafka, and cloud platforms.
+              </p>
+
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                I'm most at home where applied ML meets software engineering: GraphRAG knowledge layers, real-time streaming pipelines, and interfaces that turn complex data into clear decisions.
+              </p>
+
+              <div className="pt-6 space-y-4">
+                <div>
+                  <p className="text-sm font-semibold text-gray-400 mb-2">Languages & Frameworks</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Python', 'JavaScript', 'TypeScript', 'R', 'React.js', 'Node.js', 'FastAPI'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-xs border rounded-md border-violet-500/40 text-gray-300 bg-violet-600/10"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold text-gray-400 mb-2">Data & ML</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Machine Learning', 'NLP', 'LLM', 'RAG', 'PyTorch', 'TensorFlow', 'Scikit-learn', 'Pandas', 'NumPy', 'Plotly', 'Power BI', 'Prompt Engineering'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-xs border rounded-md border-violet-500/40 text-gray-300 bg-violet-600/10"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold text-gray-400 mb-2">Databases & Cloud</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['PostgreSQL', 'MySQL', 'DynamoDB', 'pgvector', 'AWS', 'Azure', 'GCP', 'Apache Spark', 'Hadoop', 'Kafka', 'HDFS'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-xs border rounded-md border-violet-500/40 text-gray-300 bg-violet-600/10"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold text-gray-400 mb-2">Tools</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Git/GitHub', 'Docker', 'REST APIs', 'ETL Pipelines', 'Streamlit', 'Jupyter Notebook'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-xs border rounded-md border-violet-500/40 text-gray-300 bg-violet-600/10"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center space-y-8"
-          >
-            <motion.p variants={itemVariants} className="text-gray-800 dark:text-gray-100 text-lg sm:text-xl leading-relaxed font-medium">
-              With a strong foundation in Information Technology and comprehensive experience in data science, I specialize in transforming complex data into actionable insights and building scalable software solutions.
-            </motion.p>
-            
-            <motion.p variants={itemVariants} className="text-gray-800 dark:text-gray-100 text-lg sm:text-xl leading-relaxed font-medium">
-              Currently pursuing my degree at Vilnius Gediminas Technical University, I combine academic excellence with practical experience gained through internships and hands-on projects in machine learning, data analysis, and full-stack development.
-            </motion.p>
-
-            <motion.p variants={itemVariants} className="text-gray-800 dark:text-gray-100 text-lg sm:text-xl leading-relaxed font-medium">
-              My passion lies in leveraging cutting-edge technologies like Python, Machine Learning, and Cloud Platforms to create intelligent systems that drive business value and solve complex challenges.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="mt-16 max-w-4xl mx-auto"
-          >
-            <SectionHeader 
-              subtitle="Core Competencies"
-              title="Technical Skills"
-              description="Technologies and tools I work with"
-            />
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              {skills.map((skill, index) => (
-                <SkillCard
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  color={skill.color}
-                  index={index}
-                />
-              ))}
-            </div>
-          </motion.div>
+            </motion.div>
+            </motion.div>
         </div>
       </section>
 
       {/* Experience Section */}
       <section id="experience" className="min-h-screen flex items-center justify-center py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
-          <SectionHeader 
-            subtitle="My Journey"
-            title="Experience & Education"
-            description="My path through internships, education, and professional development"
-          />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">Timeline</p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white">Experience & Education</h2>
+          </motion.div>
 
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8 relative"
+            className="relative pl-6"
           >
-            {/* Timeline line */}
-            <div className="absolute left-3.5 top-0 bottom-0 w-1 hidden md:block" style={{
-              background: `linear-gradient(to-b, ${JapaneseColors.sakuraPink}, ${JapaneseColors.matchaGreen}, ${JapaneseColors.gold})`
-            }} />
+            {/* Timeline vertical line */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-white/20" />
 
             {experiences.map((exp, index) => (
-              <ExperienceCard
+              <motion.div
                 key={index}
-                {...exp}
-                index={index}
-              />
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="relative mb-6 last:mb-0"
+              >
+                {/* Timeline dot */}
+                <div className="absolute -left-3 top-1.5 w-2 h-2 rounded-full bg-violet-600" />
+
+                {/* Experience card */}
+                <motion.div
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.2 }}
+                  className="bg-gray-900 border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <h3 className="text-lg font-semibold text-white mb-1">{exp.role}</h3>
+                  <p className="text-gray-400 text-sm mb-1">{exp.company}</p>
+                  <p className="text-gray-500 text-xs mb-4">{exp.period}</p>
+
+                  <ul className="space-y-1.5 mb-4">
+                    {exp.details.map((detail, i) => (
+                      <li key={i} className="text-gray-300 text-sm flex gap-2">
+                        <span className="text-violet-500 flex-shrink-0">•</span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {exp.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs px-2 py-1 rounded border border-violet-500/40 text-gray-300 bg-violet-600/10"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -460,36 +390,342 @@ export default function HomePage() {
       {/* Projects Section */}
       <section id="projects" className="min-h-screen flex items-center justify-center py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
-          <SectionHeader 
-            subtitle="My Work"
-            title="Featured Projects"
-            description="A collection of my latest work in AI/ML, web development, and data science"
-          />
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">Work</p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white">Featured Projects</h2>
+          </motion.div>
 
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-6 lg:gap-8"
+            className="space-y-8"
           >
-            {projects.map((project, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <ProjectCard {...project} />
-              </motion.div>
-            ))}
+            {/* Featured Project - Full Width */}
+            {projects
+              .filter((p) => p.featured)
+              .map((project, index) => (
+                <motion.a
+                  key={index}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                  className="group bg-gray-900 border border-white/10 rounded-2xl p-8 md:p-10 block hover:shadow-md transition-shadow shadow-sm"
+                >
+                  <div className="flex items-start justify-between mb-6">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-white/90 transition-colors">
+                      {project.title}
+                    </h3>
+                    <motion.div
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                      className="text-gray-400 group-hover:text-gray-300 transition-colors"
+                    >
+                      <ExternalLink size={24} />
+                    </motion.div>
+                  </div>
+
+                  <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {project.metrics && (
+                    <div className="grid md:grid-cols-3 gap-4 mb-6">
+                      {project.metrics.map((metric, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <span className="text-violet-500 font-semibold">✓</span>
+                          <span className="text-gray-300">{metric}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap gap-3">
+                    {project.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-sm px-3 py-1.5 rounded-lg text-gray-300 border border-violet-500/40 bg-violet-600/10"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </motion.a>
+              ))}
+
+            {/* Other Projects - Grid */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="grid md:grid-cols-2 gap-6 mt-12"
+            >
+              {projects
+                .filter((p) => !p.featured)
+                .map((project, index) => (
+                  <motion.a
+                    key={index}
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -5 }}
+                    className="group bg-gray-900 border border-white/10 rounded-xl p-6 block hover:shadow-md transition-shadow shadow-sm"
+                  >
+                    <h4 className="text-lg font-bold text-white mb-3 group-hover:text-white/90 transition-colors">
+                      {project.title}
+                    </h4>
+                    <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    {project.metrics && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.metrics.map((metric, i) => (
+                          <span key={i} className="text-xs text-gray-400">• {metric}</span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs px-2 py-1 rounded border border-violet-500/40 text-gray-300 bg-violet-600/10"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.a>
+                ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
+      {/* Certifications & Languages Section */}
+      {(() => {
+        const certs = [
+          // AWS & Cloud
+          { name: "Intro to Snowflake for Devs, Data Scientists, Data Engineers", date: "May 2026", cat: "AWS & Cloud" },
+          { name: "Learning Amazon Web Services Lambda", date: "Apr 2026", cat: "AWS & Cloud" },
+          { name: "Introduction to AWS Automation Tools", date: "Apr 2026", cat: "AWS & Cloud" },
+          { name: "Text to SQL: Amazon Redshift Serverless for Generative SQL in Amazon Q", date: "Mar 2026", cat: "AWS & Cloud" },
+          { name: "AWS Certified Generative AI Developer – Professional (AIP-C01) Cert Prep", date: "Mar 2026", cat: "AWS & Cloud" },
+          { name: "AWS Certified Machine Learning Engineer Associate (MLA-C01) Cert Prep", date: "Mar 2026", cat: "AWS & Cloud" },
+          { name: "AWS Certified Cloud Practitioner (CLF-C02) Cert Prep", date: "Mar 2026", cat: "AWS & Cloud" },
+          { name: "AWS Certified Solutions Architect – Professional (SAP-C02) Cert Prep", date: "Mar 2026", cat: "AWS & Cloud" },
+          { name: "AWS Certified AI Practitioner (AIF-C01) Cert Prep", date: "Mar 2026", cat: "AWS & Cloud" },
+          { name: "AWS Certified Data Engineer Associate (DEA-C01) Cert Prep", date: "Mar 2026", cat: "AWS & Cloud" },
+          { name: "AWS Certified Machine Learning – Specialty (MLS-C01) Cert Prep", date: "Mar 2026", cat: "AWS & Cloud" },
+          // AI & ML
+          { name: "Machine Learning with Python: Foundations", date: "Mar 2026", cat: "AI & ML" },
+          { name: "Microsoft Azure Data Scientist Associate (DP-100) Cert Prep", date: "Mar 2026", cat: "AI & ML" },
+          { name: "Build with AI: LLM-Powered Data Analysis App with Python and Streamlit", date: "Mar 2026", cat: "AI & ML" },
+          { name: "Microsoft Azure AI Fundamentals (AI-900) Cert Prep by Microsoft Press", date: "Mar 2026", cat: "AI & ML" },
+          { name: "Guided Lab: Model Context Protocol (MCP) for Data Science Models", date: "Mar 2026", cat: "AI & ML" },
+          { name: "Microsoft Copilot: The Art of Prompt Writing", date: "Mar 2026", cat: "AI & ML" },
+          { name: "The AI-Driven Project Manager: 10X Your Productivity with Generative AI", date: "Mar 2026", cat: "AI & ML" },
+          { name: "Integrating Generative AI into Business Strategy", date: "Mar 2026", cat: "AI & ML" },
+          { name: "Generative AI for Business Analysts", date: "Mar 2026", cat: "AI & ML" },
+          // Data Science
+          { name: "Advanced Python: Top Tools for Data Science and Engineering", date: "Mar 2026", cat: "Data Science" },
+          { name: "R for Data Science: Analysis and Visualization", date: "Mar 2026", cat: "Data Science" },
+          { name: "Python Data Visualization: Create Impactful Visuals, Animations, and Dashboards by Pearson", date: "Mar 2026", cat: "Data Science" },
+          { name: "Apache Spark Essential Training: Big Data Engineering", date: "Mar 2026", cat: "Data Science" },
+          { name: "Tableau Certified Data Analyst Cert Prep", date: "Mar 2026", cat: "Data Science" },
+          { name: "Advanced Data Visualizations: 12 Uncommon Plot Types and How to Use Them", date: "Mar 2026", cat: "Data Science" },
+          { name: "Advanced Python in Excel: Data Analysis and Visualization", date: "Mar 2026", cat: "Data Science" },
+          { name: "Data Analysis: Investigate with SQL", date: "Mar 2026", cat: "Data Science" },
+          { name: "SQL for Data Analysis", date: "Mar 2026", cat: "Data Science" },
+          { name: "Learning Data Analytics: 1 Foundations", date: "Mar 2026", cat: "Data Science" },
+          { name: "Data Science Foundations: Fundamentals", date: "Mar 2026", cat: "Data Science" },
+          // Microsoft
+          { name: "Microsoft Copilot Essentials by Microsoft Press", date: "Apr 2026", cat: "Microsoft" },
+          { name: "Microsoft Power Automate: Advanced Business Automation", date: "Mar 2026", cat: "Microsoft" },
+          { name: "Microsoft Power BI Data Analyst Associate (PL-300) Cert Prep by Microsoft Press", date: "Mar 2026", cat: "Microsoft" },
+          { name: "Advanced Power BI: DAX Language, Formulas, and Calculations", date: "Mar 2026", cat: "Microsoft" },
+          // DevOps & Tools
+          { name: "Practical GitHub Actions", date: "Apr 2026", cat: "DevOps & Tools" },
+          { name: "Learning Docker", date: "Mar 2026", cat: "DevOps & Tools" },
+          { name: "DevOps Foundations: Incident Management", date: "Mar 2026", cat: "DevOps & Tools" },
+          // Business
+          { name: "Agile Foundations", date: "Apr 2026", cat: "Business" },
+          { name: "Product Management First Steps", date: "Apr 2026", cat: "Business" },
+          { name: "Certified Business Analysis Professional (CBAP)® Cert Prep", date: "Mar 2026", cat: "Business" },
+          { name: "Everything as a Service (XaaS) is the Future of Business", date: "Mar 2026", cat: "Business" },
+          { name: "SAP Financials Essential Training", date: "Mar 2026", cat: "Business" },
+          { name: "Business Benefits Realization Foundations", date: "Mar 2026", cat: "Business" },
+          { name: "Project Management Foundations", date: "Mar 2026", cat: "Business" },
+          { name: "Six Sigma: Black Belt", date: "Mar 2026", cat: "Business" },
+          // IT & Ops
+          { name: "Putting ITIL® Into Practice: Applying ITIL® 4 Foundation Concepts", date: "Mar 2026", cat: "IT & Ops" },
+          { name: "IT Service Desk: Service Management", date: "Mar 2026", cat: "IT & Ops" },
+          { name: "Learning ITIL®", date: "Mar 2026", cat: "IT & Ops" },
+          { name: "UX Foundations: Analyzing User Data", date: "Mar 2026", cat: "IT & Ops" },
+          { name: "Magnetic Public Speaking: How to Engage Your Audience", date: "Mar 2026", cat: "IT & Ops" },
+        ];
+        const catColors: Record<string, { bg: string; text: string; border: string }> = {
+          "AWS & Cloud":   { bg: "rgba(245,158,11,0.1)",  text: "#fbbf24", border: "rgba(245,158,11,0.25)" },
+          "AI & ML":       { bg: "rgba(124,58,237,0.12)", text: "#a78bfa", border: "rgba(124,58,237,0.3)"  },
+          "Data Science":  { bg: "rgba(59,130,246,0.1)",  text: "#60a5fa", border: "rgba(59,130,246,0.25)" },
+          "Microsoft":     { bg: "rgba(14,165,233,0.1)",  text: "#38bdf8", border: "rgba(14,165,233,0.25)" },
+          "DevOps & Tools":{ bg: "rgba(16,185,129,0.1)",  text: "#34d399", border: "rgba(16,185,129,0.25)" },
+          "Business":      { bg: "rgba(236,72,153,0.1)",  text: "#f472b6", border: "rgba(236,72,153,0.25)" },
+          "IT & Ops":      { bg: "rgba(100,116,139,0.12)",text: "#94a3b8", border: "rgba(100,116,139,0.3)" },
+        };
+        const filters = ["All", ...Object.keys(catColors)];
+        const filtered = certFilter === "All" ? certs : certs.filter(c => c.cat === certFilter);
+        return (
+      <section id="certifications" className="py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+
+          {/* Header */}
+          <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-12">
+            <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3">Credentials</p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white">Certifications & Languages</h2>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+
+            {/* ── Certifications panel (2 cols) ── */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}
+              className="lg:col-span-2 rounded-2xl p-6 flex flex-col gap-5"
+              style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}
+            >
+              {/* Header row */}
+              <div className="flex items-center justify-between">
+                <p className="text-white/30 text-xs uppercase tracking-widest">
+                  {filtered.length} of {certs.length} Certifications
+                </p>
+                <a href="https://www.linkedin.com/in/rwtarjun/details/certifications/" target="_blank" rel="noopener noreferrer"
+                  className="text-violet-400 hover:text-violet-300 text-xs flex items-center gap-1 transition-colors">
+                  View all on LinkedIn <ExternalLink size={10} />
+                </a>
+              </div>
+
+              {/* Filter tabs */}
+              <div className="flex gap-2 flex-wrap">
+                {filters.map(f => (
+                  <button key={f} onClick={() => setCertFilter(f)}
+                    className="text-xs px-3 py-1.5 rounded-full font-medium transition-all"
+                    style={certFilter === f
+                      ? { background: '#7c3aed', color: '#fff', border: '1px solid #7c3aed' }
+                      : { background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.45)', border: '1px solid rgba(255,255,255,0.08)' }
+                    }
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+
+              {/* Scrollable grid */}
+              <div
+                className="cert-scroll overflow-y-auto pr-1 grid sm:grid-cols-2 gap-2.5 content-start"
+                style={{
+                  maxHeight: '480px',
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#4c1d95 transparent',
+                }}
+              >
+                {filtered.map((cert, i) => {
+                  const c = catColors[cert.cat];
+                  return (
+                    <a key={i} href="https://www.linkedin.com/in/rwtarjun/details/certifications/"
+                      target="_blank" rel="noopener noreferrer"
+                      className="group flex flex-col gap-2 p-3.5 rounded-xl cursor-pointer transition-all"
+                      style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = c.border; (e.currentTarget as HTMLElement).style.background = c.bg; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.06)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.02)'; }}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full flex-shrink-0"
+                          style={{ background: c.bg, color: c.text, border: `1px solid ${c.border}` }}>
+                          {cert.cat}
+                        </span>
+                        <span className="text-white/20 text-[10px] flex-shrink-0">{cert.date}</span>
+                      </div>
+                      <p className="text-white/70 text-xs font-medium leading-snug group-hover:text-white transition-colors line-clamp-2">
+                        {cert.name}
+                      </p>
+                    </a>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+            {/* ── Languages panel (1 col) ── */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }}
+              className="rounded-2xl p-6 flex flex-col"
+              style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}
+            >
+              <p className="text-white/30 text-xs uppercase tracking-widest mb-6">Languages</p>
+              <div className="flex flex-col gap-5 flex-1">
+                {[
+                  { lang: "Hindi",      level: "Native",                      pct: 100 },
+                  { lang: "English",    level: "Full Professional Proficiency", pct: 95  },
+                  { lang: "German",     level: "Intermediate (B1)",             pct: 50  },
+                  { lang: "Lithuanian", level: "Elementary",                    pct: 20  },
+                ].map(({ lang, level, pct }, i) => (
+                  <div key={i} className="flex flex-col gap-2">
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-white/80 text-sm font-semibold">{lang}</span>
+                      <span className="text-white/35 text-xs">{level}</span>
+                    </div>
+                    <div className="h-1 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                      <motion.div initial={{ width: 0 }} whileInView={{ width: `${pct}%` }}
+                        transition={{ duration: 0.8, delay: 0.2 + i * 0.1, ease: 'easeOut' }} viewport={{ once: true }}
+                        className="h-full rounded-full" style={{ background: 'linear-gradient(90deg, #7c3aed, #a78bfa)' }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 pt-5 flex flex-col gap-1.5" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <p className="text-white/25 text-xs uppercase tracking-widest mb-1">Based in</p>
+                <p className="text-white/70 text-sm font-medium">Vilnius, Lithuania</p>
+                <p className="text-white/30 text-xs">Open to remote &amp; relocation</p>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+        );
+      })()}
+
       {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center justify-center py-20 relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12 relative z-10">
-          <SectionHeader 
-            subtitle="Let's Connect"
-            title="Get In Touch"
-            description="Ready to collaborate on your next project? Let's create something amazing together!"
-          />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center space-y-4"
+          >
+            <p className="text-violet-400 text-sm font-semibold uppercase tracking-widest">Contact</p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white">Let's build something</h2>
+            <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
+              Open to internships, collaborations, and full-time opportunities in data science and software engineering. Drop a message — I respond quickly.
+            </p>
+          </motion.div>
 
           <ContactForm 
             formData={formData}
@@ -498,8 +734,41 @@ export default function HomePage() {
             submitMessage={submitMessage}
             handleSubmit={handleSubmit}
           />
+
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex justify-center gap-8 mt-12"
+          >
+            <a
+              href="https://github.com/ARJUNRAWAT-DEL"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/30 hover:text-violet-400 transition-colors"
+            >
+              <Github size={24} />
+            </a>
+            <a
+              href="https://linkedin.com/in/rwtarjun"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/30 hover:text-violet-400 transition-colors"
+            >
+              <Linkedin size={24} />
+            </a>
+            <a
+              href="mailto:arjunrawat4741@gmail.com"
+              className="text-white/30 hover:text-violet-400 transition-colors"
+            >
+              <Mail size={24} />
+            </a>
+          </motion.div>
         </div>
       </section>
     </div>
   );
 }
+

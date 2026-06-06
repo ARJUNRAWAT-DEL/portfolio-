@@ -1,43 +1,41 @@
 import "./globals.css";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import ThemeBackground from "../components/ThemeBackground";
 import StaticBackground from "../components/StaticBackground";
 import ExtensionErrorBoundary from "../components/ExtensionErrorBoundary";
 import ClientErrorSuppression from "../components/ClientErrorSuppression";
 import HydrationProtection from "../components/HydrationProtection";
 import HydrationFix from "../components/HydrationFix";
 import ClientOnly from "../components/ClientOnly";
-import ArjunAI from "../components/ArjunAI";
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 
 export const metadata = {
-  title: "Arjun Rawat | Full Stack Developer & Software Engineer",
-  description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. Explore my portfolio of innovative projects and technical expertise.",
-  keywords: ["Arjun Rawat", "Full Stack Developer", "React Developer", "Next.js", "JavaScript", "TypeScript", "Web Development", "Software Engineer", "Portfolio"],
+  title: "Arjun Rawat | Data Scientist & Software Engineer",
+  description: "Data Scientist & Software Engineer based in Vilnius, Lithuania. Experienced in Python, Machine Learning, FastAPI, and full-stack development. Internships at Cencora, Yara International, Labmentix, and Accenture.",
+  keywords: ["Arjun Rawat", "Data Scientist", "Full Stack Developer", "Python", "Machine Learning", "FastAPI", "React", "Next.js", "Computer Science"],
   authors: [{ name: "Arjun Rawat" }],
   robots: "index, follow",
   openGraph: {
-    title: "Arjun Rawat | Full Stack Developer & Software Engineer",
-    description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies.",
+    title: "Arjun Rawat | Data Scientist & Software Engineer",
+    description: "BSc IT graduate from VILNIUS TECH. Experienced in Python, ML, LangGraph, Kafka, FastAPI, and React. Four internships across Lithuania and India.",
     type: "website",
     locale: "en_US",
-    siteName: "Arjun Rawat Portfolio",
+    siteName: "Arjun Rawat",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/arjun-profile.jpg",
         width: 1200,
         height: 630,
-        alt: "Arjun Rawat - Full Stack Developer Portfolio"
+        alt: "Arjun Rawat"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arjun Rawat | Full Stack Developer",
-    description: "Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies.",
-    images: ["/og-image.jpg"]
+    title: "Arjun Rawat | Data Scientist & Software Engineer",
+    description: "BSc IT graduate. Python, ML, LangGraph, Kafka, FastAPI, React. Based in Vilnius, Lithuania.",
+    images: ["/arjun-profile.jpg"]
   }
 };
 
@@ -427,7 +425,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="bg-white dark:bg-black text-gray-900 dark:text-white overflow-x-hidden" suppressHydrationWarning={true}>
+      <body className="bg-[#08080f] text-white overflow-x-hidden" suppressHydrationWarning={true}>
         <ExtensionErrorBoundary>
           <ClientErrorSuppression />
           <HydrationProtection />
@@ -435,15 +433,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <StaticBackground />
             <ClientOnly>
-              <ThemeBackground />
-            </ClientOnly>
-            <ClientOnly>
               <Navbar />
             </ClientOnly>
-            <div className="relative z-10 flex" suppressHydrationWarning>
-              <ClientOnly>
-                <ArjunAI />
-              </ClientOnly>
+            <div className="relative z-10">
               <div className="flex-1">
                 <main className="min-h-screen p-4 sm:p-6 lg:p-8 pt-20" suppressHydrationWarning>{children}</main>
                 <Footer />

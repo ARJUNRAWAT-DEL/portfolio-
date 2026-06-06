@@ -49,7 +49,7 @@ class ExtensionErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBo
       return this.props.fallback || (
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-2xl font-bold text-gray-900">
               Something went wrong
             </h2>
             <button
