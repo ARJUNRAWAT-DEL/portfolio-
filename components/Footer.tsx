@@ -1,30 +1,27 @@
 "use client";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github,   href: "https://github.com/ARJUNRAWAT-DEL",        label: "GitHub" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/rwtarjun/",     label: "LinkedIn" },
-    { icon: Mail,     href: "mailto:arjunrawat4741@gmail.com",           label: "Email" },
+    { icon: Github,   href: "https://github.com/ARJUNRAWAT-DEL",     label: "GitHub"   },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/rwtarjun/", label: "LinkedIn" },
+    { icon: Mail,     href: "mailto:arjunrawat4741@gmail.com",        label: "Email"    },
   ];
 
   const quickLinks = [
-    { label: "About",      href: "#about" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects",   href: "#projects" },
-    { label: "Contact",    href: "#contact" },
+    { label: "About",      href: "#about"          },
+    { label: "Experience", href: "#experience"     },
+    { label: "Projects",   href: "#projects"       },
+    { label: "Contact",    href: "#contact"        },
   ];
 
   return (
     <footer
       className="relative border-t"
-      style={{
-        background: 'rgba(8, 8, 15, 0.97)',
-        borderColor: 'rgba(255,255,255,0.07)',
-      }}
+      style={{ background: 'rgba(8,8,8,0.97)', borderColor: 'rgba(255,255,255,0.06)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="grid md:grid-cols-3 gap-10 mb-10">
@@ -38,15 +35,18 @@ export default function Footer() {
             className="space-y-4"
           >
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-violet-600 flex items-center justify-center text-white text-sm font-bold">
+              <div
+                className="w-9 h-9 flex items-center justify-center text-white text-sm font-light tracking-wider"
+                style={{ border: '1px solid rgba(255,255,255,0.2)' }}
+              >
                 AR
               </div>
               <div>
-                <p className="font-semibold text-white text-sm leading-none">Arjun Rawat</p>
-                <p className="text-xs text-white/35 mt-0.5">Data Science · AI · Engineering</p>
+                <p className="font-light text-white text-sm leading-none tracking-wide">Arjun Rawat</p>
+                <p className="text-xs text-white/30 mt-0.5 uppercase tracking-widest font-light">Data Science · AI · Engineering</p>
               </div>
             </div>
-            <p className="text-sm text-white/40 leading-relaxed">
+            <p className="text-sm text-white/35 leading-relaxed font-light">
               Building intelligent, production-ready systems at the intersection of data and software engineering.
             </p>
           </motion.div>
@@ -59,16 +59,16 @@ export default function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <p className="text-xs font-semibold text-white/50 uppercase tracking-widest">Navigate</p>
+            <p className="text-xs font-light text-white/30 uppercase tracking-[0.25em]">Navigate</p>
             <div className="space-y-2">
               {quickLinks.map((link, i) => (
                 <motion.a
                   key={i}
                   href={link.href}
                   whileHover={{ x: 4 }}
-                  className="flex items-center gap-2 text-sm text-white/40 hover:text-white/80 transition-colors"
+                  className="flex items-center gap-2 text-sm text-white/35 hover:text-white/75 transition-colors font-light"
                 >
-                  <span className="w-1 h-1 rounded-full bg-violet-500" />
+                  <span className="w-px h-3" style={{ background: 'rgba(255,255,255,0.2)' }} />
                   {link.label}
                 </motion.a>
               ))}
@@ -83,7 +83,7 @@ export default function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <p className="text-xs font-semibold text-white/50 uppercase tracking-widest">Connect</p>
+            <p className="text-xs font-light text-white/30 uppercase tracking-[0.25em]">Connect</p>
             <div className="flex gap-3">
               {socialLinks.map(({ icon: Icon, href, label }, i) => (
                 <motion.a
@@ -94,35 +94,27 @@ export default function Footer() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.92 }}
                   title={label}
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-white/40 hover:text-white hover:bg-violet-600/20 border border-white/08 transition-all"
-                  style={{ border: '1px solid rgba(255,255,255,0.07)' }}
+                  className="w-9 h-9 flex items-center justify-center text-white/30 hover:text-white transition-colors"
+                  style={{ border: '1px solid rgba(255,255,255,0.08)' }}
                 >
-                  <Icon size={16} />
+                  <Icon size={15} />
                 </motion.a>
               ))}
             </div>
-            <p className="text-xs text-white/30">Vilnius, Lithuania · Open to remote</p>
+            <p className="text-xs text-white/25 font-light">Vilnius, Lithuania · Open to remote</p>
           </motion.div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px mb-8" style={{ background: 'rgba(255,255,255,0.06)' }} />
+        <div className="h-px mb-8" style={{ background: 'rgba(255,255,255,0.05)' }} />
 
-        {/* Bottom */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/25"
+          className="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/20 font-light"
         >
-          <div className="flex items-center gap-1">
-            <span>© {currentYear} Arjun Rawat. Built with</span>
-            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1.5, repeat: Infinity }}>
-              <Heart size={12} className="text-violet-400" fill="currentColor" />
-            </motion.div>
-            <span>Next.js &amp; Tailwind.</span>
-          </div>
-          <a href="/Arjun-rawat-cv.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white/60 transition-colors">
+          <span>© {currentYear} Arjun Rawat. Built with Next.js & Tailwind.</span>
+          <a href="/Arjun-rawat-cv.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white/50 transition-colors">
             Download CV
           </a>
         </motion.div>

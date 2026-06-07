@@ -425,7 +425,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="bg-[#08080f] text-white overflow-x-hidden" suppressHydrationWarning={true}>
+      <body className="bg-[#080808] text-white overflow-x-hidden" suppressHydrationWarning={true}>
         <ExtensionErrorBoundary>
           <ClientErrorSuppression />
           <HydrationProtection />
@@ -437,7 +437,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </ClientOnly>
             <div className="relative z-10">
               <div className="flex-1">
-                <main className="min-h-screen p-4 sm:p-6 lg:p-8 pt-20" suppressHydrationWarning>{children}</main>
+                <main className="min-h-screen pt-20" suppressHydrationWarning>{children}</main>
                 <Footer />
               </div>
             </div>

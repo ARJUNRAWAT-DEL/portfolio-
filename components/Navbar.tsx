@@ -4,12 +4,12 @@ import { Home, User, Briefcase, Code, Mail, Download, Menu, X, Award } from 'luc
 import { useState, useEffect } from 'react';
 
 const navItems = [
-  { id: 'home',       label: 'Home',       icon: Home },
-  { id: 'about',      label: 'About',      icon: User },
-  { id: 'experience', label: 'Experience', icon: Briefcase },
-  { id: 'projects',       label: 'Projects',       icon: Code },
-  { id: 'certifications', label: 'Credentials',    icon: Award },
-  { id: 'contact',        label: 'Contact',        icon: Mail },
+  { id: 'home',           label: 'Home',        icon: Home     },
+  { id: 'about',          label: 'About',       icon: User     },
+  { id: 'experience',     label: 'Experience',  icon: Briefcase },
+  { id: 'projects',       label: 'Projects',    icon: Code     },
+  { id: 'certifications', label: 'Credentials', icon: Award    },
+  { id: 'contact',        label: 'Contact',     icon: Mail     },
 ];
 
 export default function Navbar() {
@@ -25,14 +25,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on resize to desktop
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 1024) setMobileOpen(false); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // Track active section via IntersectionObserver
   useEffect(() => {
     if (!isMounted) return;
     const observer = new IntersectionObserver(
@@ -58,12 +56,8 @@ export default function Navbar() {
 
   if (!isMounted) return null;
 
-  const navBg = scrolled
-    ? 'rgba(6, 6, 12, 0.97)'
-    : 'rgba(6, 6, 12, 0.80)';
-  const navBorder = scrolled
-    ? 'rgba(124, 58, 237, 0.15)'
-    : 'rgba(255,255,255,0.04)';
+  const navBg     = scrolled ? 'rgba(8, 8, 8, 0.97)' : 'rgba(8, 8, 8, 0.80)';
+  const navBorder = scrolled ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.04)';
 
   return (
     <>
@@ -90,12 +84,15 @@ export default function Navbar() {
             className="flex items-center gap-3 cursor-pointer"
             onClick={() => handleNavClick('home')}
           >
-            <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white text-xs font-bold">
+            <div
+              className="w-8 h-8 flex items-center justify-center text-white text-xs font-light tracking-wider"
+              style={{ border: '1px solid rgba(255,255,255,0.2)' }}
+            >
               AR
             </div>
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-white leading-none">Arjun Rawat</p>
-              <p className="text-[10px] text-white/35 mt-0.5">Data Scientist · Software Engineer</p>
+              <p className="text-sm font-light text-white leading-none tracking-wide">Arjun Rawat</p>
+              <p className="text-[10px] text-white/30 mt-0.5 tracking-widest uppercase font-light">Data Scientist · AI Engineer</p>
             </div>
           </motion.div>
 
@@ -116,18 +113,16 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + i * 0.05 }}
-                  className={`relative px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive ? 'text-white' : 'text-white/40 hover:text-white/75'
+                  className={`relative px-3 py-2 text-sm font-light transition-colors ${
+                    isActive ? 'text-white' : 'text-white/35 hover:text-white/70'
                   }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <Icon size={13} />
-                    <span>{item.label}</span>
-                  </div>
+                  <span>{item.label}</span>
                   {isActive && (
                     <motion.div
                       layoutId="nav-indicator"
-                      className="absolute bottom-0 left-2 right-2 h-px bg-violet-500"
+                      className="absolute bottom-0 left-2 right-2 h-px"
+                      style={{ background: 'rgba(255,255,255,0.7)' }}
                     />
                   )}
                 </motion.button>
@@ -146,16 +141,16 @@ export default function Navbar() {
               href="/Arjun-rawat-cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-violet-600 hover:bg-violet-500 text-white transition-colors"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-light text-white/60 hover:text-white transition-colors"
+              style={{ border: '1px solid rgba(255,255,255,0.15)' }}
             >
-              <Download size={13} />
+              <Download size={12} />
               Resume
             </a>
 
-            {/* Hamburger — mobile only */}
             <button
               onClick={() => setMobileOpen(o => !o)}
-              className="lg:hidden p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/05 transition-colors"
+              className="lg:hidden p-2 text-white/40 hover:text-white transition-colors"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -168,7 +163,6 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               key="backdrop"
               initial={{ opacity: 0 }}
@@ -179,16 +173,15 @@ export default function Navbar() {
               onClick={() => setMobileOpen(false)}
             />
 
-            {/* Drawer */}
             <motion.div
               key="drawer"
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed top-[65px] left-4 right-4 z-40 lg:hidden rounded-2xl overflow-hidden"
+              className="fixed top-[65px] left-4 right-4 z-40 lg:hidden overflow-hidden"
               style={{
-                background: 'rgba(10, 10, 18, 0.98)',
+                background: 'rgba(8, 8, 8, 0.98)',
                 border: '1px solid rgba(255,255,255,0.08)',
                 backdropFilter: 'blur(20px)',
               }}
@@ -204,31 +197,30 @@ export default function Navbar() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.04 }}
                       onClick={() => handleNavClick(item.id)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors w-full text-left ${
-                        isActive
-                          ? 'bg-violet-600/15 text-white border border-violet-500/20'
-                          : 'text-white/45 hover:text-white hover:bg-white/04'
+                      className={`flex items-center gap-3 px-4 py-3 text-sm font-light transition-colors w-full text-left ${
+                        isActive ? 'text-white' : 'text-white/40 hover:text-white/75'
                       }`}
+                      style={isActive ? { borderBottom: '1px solid rgba(255,255,255,0.08)' } : {}}
                     >
-                      <Icon size={15} className={isActive ? 'text-violet-400' : ''} />
+                      <Icon size={14} className={isActive ? 'text-white/70' : 'text-white/25'} />
                       {item.label}
                       {isActive && (
-                        <span className="ml-auto w-1.5 h-1.5 rounded-full bg-violet-500" />
+                        <span className="ml-auto w-1 h-1 rounded-full bg-white/50" />
                       )}
                     </motion.button>
                   );
                 })}
 
-                {/* Resume in drawer */}
                 <div className="mt-2 pt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                   <a
                     href="/Arjun-rawat-cv.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-semibold bg-violet-600 hover:bg-violet-500 text-white transition-colors"
+                    className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-light text-white/60 hover:text-white transition-colors"
+                    style={{ border: '1px solid rgba(255,255,255,0.15)' }}
                     onClick={() => setMobileOpen(false)}
                   >
-                    <Download size={14} />
+                    <Download size={13} />
                     Download Resume
                   </a>
                 </div>
