@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "node scripts/dev.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -12,7 +12,8 @@
     "analyze": "ANALYZE=true npm run build",
     "sitemap": "next build && next export",
     "accessibility-check": "echo 'Run accessibility audit with your preferred tool'",
-    "performance-test": "echo 'Run performance tests with Lighthouse or similar tools'"
+    "performance-test": "echo 'Run performance tests with Lighthouse or similar tools'",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
@@ -36,6 +37,6 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": "^20.10.0 || ^20.11.0 || ^20.12.0 || >=20.10"
+    "node": ">=22.18.0"
   }
 }
