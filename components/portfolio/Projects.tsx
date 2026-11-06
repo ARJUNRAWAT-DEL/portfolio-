@@ -13,7 +13,7 @@ import ProjectDetail from "./ProjectDetail";
 
 export default function Projects() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const [detail, setDetail] = useState<Project | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const area = useRef<HTMLDivElement>(null);

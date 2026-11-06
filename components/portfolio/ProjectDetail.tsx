@@ -1,4 +1,5 @@
 import { ArrowUpRight, Github } from "lucide-react";
+import Image from "next/image";
 import type { Project } from "@/lib/portfolio";
 export function CircuitArt({ flow }: { flow: string[] }) {
   return (
@@ -60,6 +61,29 @@ export default function ProjectDetail({ project }: { project: Project }) {
           ))}
         </div>
         <hr />
+        {project.visual && (
+          <figure className="project-visual">
+            <div className="project-visual-bar">
+              <span>PROJECT SNAPSHOT</span>
+              <span>ANALYTICS OUTPUT</span>
+            </div>
+            <a
+              href={project.visual.src}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open full-size retail analysis image"
+            >
+              <Image
+                src={project.visual.src}
+                alt={project.visual.alt}
+                width={4470}
+                height={3565}
+                sizes="(max-width: 760px) 90vw, 800px"
+              />
+            </a>
+            <figcaption>{project.visual.caption}</figcaption>
+          </figure>
+        )}
         <h2>Overview</h2>
         <p>{project.overview}</p>
         <h2>Highlights</h2>

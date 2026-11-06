@@ -17,7 +17,6 @@ import {
   Home,
   Linkedin,
   Mail,
-  MoreHorizontal,
   User,
 } from "lucide-react";
 import {
@@ -46,6 +45,13 @@ const sections = [
   { id: "telemetry", label: "Telemetry", icon: Activity },
   { id: "contact", label: "Contact", icon: Mail },
 ];
+const navigation = [
+  { id: "home", label: "Home", icon: Home },
+  { id: "about", label: "About", icon: User },
+  { id: "projects", label: "Work", icon: Grid2X2 },
+  { id: "skills", label: "Skills", icon: Cpu },
+  { id: "contact", label: "Contact", icon: Mail },
+];
 function Heading({
   number,
   label,
@@ -68,8 +74,14 @@ function Heading({
 }
 export default function Portfolio() {
   const [active, setActive] = useState("home");
-  const [expanded, setExpanded] = useState(false);
   const [ask, setAsk] = useState(false);
+  const activeGroup = ["education", "certifications"].includes(active)
+    ? "about"
+    : active === "experience"
+      ? "projects"
+      : active === "telemetry"
+        ? "skills"
+        : active;
   useEffect(() => {
     let queued = false;
     const update = () => {
@@ -94,42 +106,25 @@ export default function Portfolio() {
   }, []);
   return (
     <>
-      <nav
-        className={`nav-dock ${active !== "home" && !expanded ? "compact" : ""}`}
-        aria-label="Sections"
-        onMouseEnter={() => setExpanded(true)}
-        onMouseLeave={() => setExpanded(false)}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") setExpanded(false);
-        }}
-      >
+      <nav className="primary-nav" aria-label="Main navigation">
         <ul>
-          {sections.map(({ id, label, icon: Icon }) => (
-            <li key={id} className={active === id ? "current" : ""}>
+          {navigation.map(({ id, label, icon: Icon }) => (
+            <li key={id} className={activeGroup === id ? "current" : ""}>
               <a
                 href={`#${id}`}
                 aria-label={label}
-                aria-current={active === id ? "location" : undefined}
+                aria-current={activeGroup === id ? "location" : undefined}
                 title={label}
                 onClick={() => {
                   setActive(id);
-                  setExpanded(false);
                 }}
               >
-                <Icon size={17} />
+                <Icon size={16} aria-hidden="true" />
                 <span>{label}</span>
               </a>
             </li>
           ))}
         </ul>
-        <button
-          className="dock-expand"
-          aria-label={expanded ? "Collapse navigation" : "Show all sections"}
-          aria-expanded={expanded}
-          onClick={() => setExpanded(!expanded)}
-        >
-          <MoreHorizontal size={18} />
-        </button>
       </nav>
       <main id="main">
         <section id="home" className="hero section-shell">
@@ -186,6 +181,30 @@ export default function Portfolio() {
               </a>
             </div>
           </div>
+          <figure className="hero-portrait">
+            <div className="hero-portrait-frame">
+              <Image
+                src="/arjun-profile.jpg"
+                alt="Arjun Rawat by the waterfront"
+                fill
+                priority
+                sizes="(max-width: 760px) 85vw, (max-width: 1000px) 40vw, 430px"
+              />
+              <div className="hero-portrait-shade" />
+              <figcaption>
+                <span className="portrait-overline">
+                  THE PERSON BEHIND THE PROJECTS
+                </span>
+                <strong>Curiosity, turned into code.</strong>
+                <span>Based in Würzburg · Building with AI &amp; data</span>
+              </figcaption>
+            </div>
+            <a className="availability-note" href="#contact">
+              <span className="availability-dot" />
+              Open to Werkstudent opportunities
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          </figure>
           <a href="#about" className="scroll-cue">
             <ArrowDown size={20} />
             <span>SCROLL TO EXPLORE</span>
@@ -197,6 +216,20 @@ export default function Portfolio() {
             Engineering <em>intelligent</em>
             <br className="desktop-break" /> software
           </Heading>
+          <div className="section-shortcuts" aria-label="More about Arjun">
+            <a href="#experience">
+              Experience <ArrowUpRight size={14} />
+            </a>
+            <a href="#education">
+              Education <ArrowUpRight size={14} />
+            </a>
+            <a href="#certifications">
+              Learning <ArrowUpRight size={14} />
+            </a>
+            <a href="#telemetry">
+              GitHub activity <ArrowUpRight size={14} />
+            </a>
+          </div>
           <div className="about-layout">
             <div className="console portrait-console">
               <div className="console-bar">
