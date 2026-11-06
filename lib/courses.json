@@ -1,0 +1,257 @@
+[
+  {
+    "name": "Intro to Snowflake for Devs, Data Scientists, Data Engineers",
+    "date": "May 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "Learning Amazon Web Services Lambda",
+    "date": "Apr 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "Introduction to AWS Automation Tools",
+    "date": "Apr 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "Text to SQL: Amazon Redshift Serverless for Generative SQL in Amazon Q",
+    "date": "Mar 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "AWS Certified Generative AI Developer \u2013 Professional (AIP-C01) Cert Prep",
+    "date": "Mar 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "AWS Certified Machine Learning Engineer Associate (MLA-C01) Cert Prep",
+    "date": "Mar 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "AWS Certified Cloud Practitioner (CLF-C02) Cert Prep",
+    "date": "Mar 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "AWS Certified Solutions Architect \u2013 Professional (SAP-C02) Cert Prep",
+    "date": "Mar 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "AWS Certified AI Practitioner (AIF-C01) Cert Prep",
+    "date": "Mar 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "AWS Certified Data Engineer Associate (DEA-C01) Cert Prep",
+    "date": "Mar 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "AWS Certified Machine Learning \u2013 Specialty (MLS-C01) Cert Prep",
+    "date": "Mar 2026",
+    "category": "AWS & Cloud"
+  },
+  {
+    "name": "Machine Learning with Python: Foundations",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "Microsoft Azure Data Scientist Associate (DP-100) Cert Prep",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "Build with AI: LLM-Powered Data Analysis App with Python and Streamlit",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "Microsoft Azure AI Fundamentals (AI-900) Cert Prep by Microsoft Press",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "Guided Lab: Model Context Protocol (MCP) for Data Science Models",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "Microsoft Copilot: The Art of Prompt Writing",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "The AI-Driven Project Manager: 10X Your Productivity with Generative AI",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "Integrating Generative AI into Business Strategy",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "Generative AI for Business Analysts",
+    "date": "Mar 2026",
+    "category": "AI & ML"
+  },
+  {
+    "name": "Advanced Python: Top Tools for Data Science and Engineering",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "R for Data Science: Analysis and Visualization",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Python Data Visualization: Create Impactful Visuals, Animations, and Dashboards by Pearson",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Apache Spark Essential Training: Big Data Engineering",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Tableau Certified Data Analyst Cert Prep",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Advanced Data Visualizations: 12 Uncommon Plot Types and How to Use Them",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Advanced Python in Excel: Data Analysis and Visualization",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Data Analysis: Investigate with SQL",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "SQL for Data Analysis",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Learning Data Analytics: 1 Foundations",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Data Science Foundations: Fundamentals",
+    "date": "Mar 2026",
+    "category": "Data Science"
+  },
+  {
+    "name": "Microsoft Copilot Essentials by Microsoft Press",
+    "date": "Apr 2026",
+    "category": "Microsoft"
+  },
+  {
+    "name": "Microsoft Power Automate: Advanced Business Automation",
+    "date": "Mar 2026",
+    "category": "Microsoft"
+  },
+  {
+    "name": "Microsoft Power BI Data Analyst Associate (PL-300) Cert Prep by Microsoft Press",
+    "date": "Mar 2026",
+    "category": "Microsoft"
+  },
+  {
+    "name": "Advanced Power BI: DAX Language, Formulas, and Calculations",
+    "date": "Mar 2026",
+    "category": "Microsoft"
+  },
+  {
+    "name": "Practical GitHub Actions",
+    "date": "Apr 2026",
+    "category": "DevOps & Tools"
+  },
+  {
+    "name": "Learning Docker",
+    "date": "Mar 2026",
+    "category": "DevOps & Tools"
+  },
+  {
+    "name": "DevOps Foundations: Incident Management",
+    "date": "Mar 2026",
+    "category": "DevOps & Tools"
+  },
+  {
+    "name": "Agile Foundations",
+    "date": "Apr 2026",
+    "category": "Business"
+  },
+  {
+    "name": "Product Management First Steps",
+    "date": "Apr 2026",
+    "category": "Business"
+  },
+  {
+    "name": "Certified Business Analysis Professional (CBAP)\u00ae Cert Prep",
+    "date": "Mar 2026",
+    "category": "Business"
+  },
+  {
+    "name": "Everything as a Service (XaaS) is the Future of Business",
+    "date": "Mar 2026",
+    "category": "Business"
+  },
+  {
+    "name": "SAP Financials Essential Training",
+    "date": "Mar 2026",
+    "category": "Business"
+  },
+  {
+    "name": "Business Benefits Realization Foundations",
+    "date": "Mar 2026",
+    "category": "Business"
+  },
+  {
+    "name": "Project Management Foundations",
+    "date": "Mar 2026",
+    "category": "Business"
+  },
+  {
+    "name": "Six Sigma: Black Belt",
+    "date": "Mar 2026",
+    "category": "Business"
+  },
+  {
+    "name": "Putting ITIL\u00ae Into Practice: Applying ITIL\u00ae 4 Foundation Concepts",
+    "date": "Mar 2026",
+    "category": "IT & Ops"
+  },
+  {
+    "name": "IT Service Desk: Service Management",
+    "date": "Mar 2026",
+    "category": "IT & Ops"
+  },
+  {
+    "name": "Learning ITIL\u00ae",
+    "date": "Mar 2026",
+    "category": "IT & Ops"
+  },
+  {
+    "name": "UX Foundations: Analyzing User Data",
+    "date": "Mar 2026",
+    "category": "IT & Ops"
+  },
+  {
+    "name": "Magnetic Public Speaking: How to Engage Your Audience",
+    "date": "Mar 2026",
+    "category": "IT & Ops"
+  }
+]

@@ -1,54 +1,36 @@
-'use client';
-
-import { useEffect } from 'react';
-
-export default function Error({
-  error,
+"use client";
+export default function ErrorPage({
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error('Page error caught:', error);
-  }, [error]);
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="text-center p-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          Oops! Something went wrong
-        </h1>
-        <p className="text-gray-600 mb-6 max-w-md">
-          We encountered an unexpected error. This has been logged and we'll look into it.
-        </p>
-        <div className="space-x-4">
-          <button
-            onClick={() => reset()}
-            className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-3 rounded-lg transition-all hover:from-cyan-600 hover:to-purple-700"
-          >
-            Try again
-          </button>
-          <a 
-            href="/"
-            className="inline-block bg-gray-200 text-gray-900 px-6 py-3 rounded-lg transition-colors hover:bg-gray-300"
-          >
-            Go home
-          </a>
-        </div>
-        {process.env.NODE_ENV === 'development' && (
-          <details className="mt-6 text-left">
-            <summary className="cursor-pointer text-sm text-gray-500">
-              Error Details (Development only)
-            </summary>
-            <pre className="mt-2 text-xs text-red-500 bg-red-50 p-4 rounded overflow-auto">
-              {error.message}
-              {error.stack && `\n\nStack trace:\n${error.stack}`}
-            </pre>
-          </details>
-        )}
+    <main
+      id="main"
+      className="section-shell"
+      style={{
+        minHeight: "80vh",
+        display: "grid",
+        alignContent: "center",
+        gap: 24,
+      }}
+    >
+      <p className="eyebrow">CONNECTION INTERRUPTED</p>
+      <h1 style={{ fontSize: "clamp(36px,6vw,64px)" }}>
+        Let’s try that again.
+      </h1>
+      <p>
+        This section couldn’t load. You can retry or return to the homepage.
+      </p>
+      <div style={{ display: "flex", gap: 16 }}>
+        <button className="action primary" onClick={reset}>
+          TRY AGAIN
+        </button>
+        <a className="action" href="/">
+          GO HOME
+        </a>
       </div>
-    </div>
+    </main>
   );
 }

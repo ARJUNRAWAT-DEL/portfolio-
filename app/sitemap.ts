@@ -1,38 +1,13 @@
-import { MetadataRoute } from 'next'
-
+import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
+import { projects } from "@/lib/portfolio";
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://arjunrawat.dev'
-  
+  const base = siteUrl;
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/#about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+    { url: base, priority: 1 },
+    ...projects.map((p) => ({
+      url: `${base}/projects/${p.slug}`,
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#experience`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#projects`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.7,
-    },
-  ]
+    })),
+  ];
 }
