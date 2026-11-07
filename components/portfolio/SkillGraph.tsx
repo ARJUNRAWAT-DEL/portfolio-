@@ -20,7 +20,7 @@ export default function SkillGraph() {
   const [selected, setSelected] = useState<number | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const [rotation, setRotation] = useState({ x: -0.14, y: 0.25 });
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const drag = useRef<{ x: number; y: number } | null>(null);
   const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {

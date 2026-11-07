@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./polish.css";
 import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Arjun Rawat | AI & Data Engineering",

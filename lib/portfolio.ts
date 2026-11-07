@@ -64,6 +64,7 @@ export type Project = {
   overview: string;
   highlights: string[];
   flow: string[];
+  visual?: { src: string; alt: string; caption: string };
 };
 export const projects: Project[] = [
   {
@@ -104,6 +105,12 @@ export const projects: Project[] = [
   },
   {
     slug: "smart-retail",
+    visual: {
+      src: "/retail-dashboard.png",
+      alt: "Smart Retail project charts showing revenue by category, customer segments, monthly revenue and transaction distribution",
+      caption:
+        "Analysis output from the Smart Retail Analytics repository. Open the image to inspect the charts.",
+    },
     title: "Smart Retail Analytics",
     category: "DATA × ANALYTICS",
     description:
