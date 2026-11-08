@@ -404,6 +404,38 @@ export default function Portfolio() {
               </article>
             ))}
           </div>
+          <figure className="education-milestone console">
+            <div className="education-milestone-photo">
+              <Image
+                src="/vilnius-tech-graduation.webp"
+                alt="Arjun Rawat in graduation attire holding his degree outside VILNIUS TECH"
+                fill
+                sizes="(max-width: 760px) 90vw, 430px"
+              />
+              <span className="education-photo-index mono">MILESTONE_01</span>
+            </div>
+            <figcaption>
+              <p className="section-label">
+                <span>2026</span>
+                <i /> GRADUATION MILESTONE
+              </p>
+              <h3>
+                From IT foundations to
+                <br /> <em>artificial intelligence.</em>
+              </h3>
+              <p>
+                Completing my BSc in Information Technology at VILNIUS TECH
+                marked four years of study across software, data, cloud and
+                big-data foundations — and the starting point for my MSc in
+                Artificial Intelligence at JMU Würzburg.
+              </p>
+              <div className="education-milestone-meta">
+                <span>BSc Information Technology</span>
+                <span>Vilnius, Lithuania</span>
+                <span>2022–2026</span>
+              </div>
+            </figcaption>
+          </figure>
         </section>
         <section id="certifications" className="section-shell">
           <Heading number="06" label="CERTIFICATIONS & LEARNING">
