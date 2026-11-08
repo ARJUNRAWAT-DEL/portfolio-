@@ -12,7 +12,8 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/rwtarjun/",
   cv: "/Arjun-rawat-cv.pdf",
   availability: "Open to Werkstudent roles · up to 20 hours/week",
-  summary: "I turn data into useful, intelligent software.",
+  summary:
+    "MSc Artificial Intelligence student building practical ML and data systems.",
 };
 export const skills = [
   {
@@ -62,6 +63,9 @@ export type Project = {
   link: string | null;
   status: string;
   overview: string;
+  problem: string;
+  contribution: string;
+  result: string;
   highlights: string[];
   flow: string[];
   visual?: { src: string; alt: string; caption: string };
@@ -78,6 +82,12 @@ export const projects: Project[] = [
     status: "SOURCE AVAILABLE",
     overview:
       "A document intelligence project connecting natural language processing with a FastAPI backend and PostgreSQL vector storage. It brings together my interests in applied AI, useful APIs and working with unstructured information.",
+    problem:
+      "Long, unstructured documents make it difficult to locate and summarize relevant information quickly.",
+    contribution:
+      "Designed a document-processing and semantic-search workflow with FastAPI endpoints and pgvector-backed retrieval.",
+    result:
+      "An end-to-end foundation that turns uploaded documents into searchable knowledge through a REST interface.",
     highlights: [
       "Document processing and summarization workflows",
       "Vector storage with PostgreSQL and pgvector",
@@ -96,6 +106,12 @@ export const projects: Project[] = [
     status: "SOURCE AVAILABLE",
     overview:
       "An exploration of collaborative AI assistants, pairing a React interface with a Python backend. The project focuses on making task execution and agent activity visible in one place.",
+    problem:
+      "Collaborative AI systems are difficult to understand when task hand-offs and agent activity stay hidden.",
+    contribution:
+      "Connected a React monitoring interface to a Python and FastAPI backend with PostgreSQL-backed workflow state.",
+    result:
+      "A visual simulator that makes collaborative assistant workflows and agent activity easier to inspect.",
     highlights: [
       "Collaborative assistant workflows",
       "React interface and performance dashboards",
@@ -120,6 +136,12 @@ export const projects: Project[] = [
     status: "SOURCE AVAILABLE",
     overview:
       "A retail analytics application that turns customer and transaction data into visual insights. It combines RFM analysis and K-Means segmentation with demand forecasting and interactive Plotly charts.",
+    problem:
+      "Raw retail transactions do not directly reveal useful customer groups or demand patterns.",
+    contribution:
+      "Built data preparation, RFM features, K-Means segmentation, forecasting and a Plotly-based dashboard.",
+    result:
+      "An interactive analytics workflow that turns customer and transaction records into decision-ready visual insights.",
     highlights: [
       "RFM and K-Means customer segmentation",
       "Demand forecasting workflows",
@@ -138,6 +160,12 @@ export const projects: Project[] = [
     status: "SOURCE AVAILABLE",
     overview:
       "A finance-focused project exploring a sentiment-to-liquidity pipeline with Kafka and Spark Streaming, alongside a graph-based retrieval layer. The source includes backend agents, a React interface, streaming jobs and Docker-based infrastructure.",
+    problem:
+      "Financial signals arrive across disconnected sources and are difficult to interpret as one coherent picture.",
+    contribution:
+      "Explored a Kafka and Spark streaming pipeline, graph-based retrieval with Neo4j, backend agents and a React interface.",
+    result:
+      "A prototype architecture connecting streaming events, graph retrieval and an interpretable financial dashboard.",
     highlights: [
       "Kafka and Spark Streaming pipeline exploration",
       "GraphRAG with Neo4j and language models",

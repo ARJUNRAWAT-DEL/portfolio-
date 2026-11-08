@@ -60,6 +60,20 @@ export default function ProjectDetail({ project }: { project: Project }) {
             <span key={t}>{t}</span>
           ))}
         </div>
+        <div className="project-proof-grid">
+          <article>
+            <span>01 / PROBLEM</span>
+            <p>{project.problem}</p>
+          </article>
+          <article>
+            <span>02 / MY CONTRIBUTION</span>
+            <p>{project.contribution}</p>
+          </article>
+          <article>
+            <span>03 / RESULT</span>
+            <p>{project.result}</p>
+          </article>
+        </div>
         <hr />
         {project.visual && (
           <figure className="project-visual">

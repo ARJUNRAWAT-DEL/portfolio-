@@ -7,7 +7,6 @@ import {
   ArrowUp,
   ArrowUpRight,
   Award,
-  Bot,
   BriefcaseBusiness,
   Cpu,
   Download,
@@ -131,7 +130,7 @@ export default function Portfolio() {
           <div className="hero-copy">
             <p className="hero-kicker">
               <span>WÜRZBURG, GERMANY</span>
-              <i /> MSC ARTIFICIAL INTELLIGENCE
+              <i /> AI · DATA · SOFTWARE
             </p>
             <h1>
               Arjun
@@ -147,10 +146,36 @@ export default function Portfolio() {
               <a className="action primary" href="#projects">
                 VIEW PROJECTS <ArrowUpRight size={17} />
               </a>
-              <button className="action" onClick={() => setAsk(true)}>
-                ASK MY ASSISTANT <Bot size={17} />
-              </button>
+              <a className="action" href="#contact">
+                CONTACT ME <Mail size={16} />
+              </a>
+              <a
+                className="action"
+                href={profile.cv}
+                target="_blank"
+                rel="noreferrer"
+              >
+                DOWNLOAD CV <Download size={16} />
+              </a>
             </div>
+            <dl className="recruiter-brief" aria-label="Recruiter information">
+              <div>
+                <dt>LOCATION</dt>
+                <dd>Würzburg, Germany</dd>
+              </div>
+              <div>
+                <dt>AVAILABILITY</dt>
+                <dd>Werkstudent · up to 20 h/week</dd>
+              </div>
+              <div>
+                <dt>FOCUS</dt>
+                <dd>AI · data · software</dd>
+              </div>
+              <div>
+                <dt>ENGLISH</dt>
+                <dd>Professional working proficiency</dd>
+              </div>
+            </dl>
             <div className="hero-links">
               <Clock />
               <a
@@ -171,21 +196,16 @@ export default function Portfolio() {
               >
                 <Linkedin size={16} />
               </a>
-              <a
-                className="cv-link"
-                href={profile.cv}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Download size={14} /> CV
-              </a>
+              <button className="cv-link assistant-link" onClick={() => setAsk(true)}>
+                Ask portfolio assistant
+              </button>
             </div>
           </div>
           <figure className="hero-portrait">
             <div className="hero-portrait-frame">
               <Image
-                src="/arjun-profile.jpg"
-                alt="Arjun Rawat by the waterfront"
+                src="/arjun-professional.webp"
+                alt="Arjun Rawat wearing a light suit outside a modern building"
                 fill
                 priority
                 sizes="(max-width: 760px) 85vw, (max-width: 1000px) 40vw, 430px"
@@ -193,17 +213,12 @@ export default function Portfolio() {
               <div className="hero-portrait-shade" />
               <figcaption>
                 <span className="portrait-overline">
-                  THE PERSON BEHIND THE PROJECTS
+                  AI · DATA · SOFTWARE
                 </span>
-                <strong>Curiosity, turned into code.</strong>
-                <span>Based in Würzburg · Building with AI &amp; data</span>
+                <strong>Engineering systems with purpose.</strong>
+                <span>MSc Artificial Intelligence · JMU Würzburg</span>
               </figcaption>
             </div>
-            <a className="availability-note" href="#contact">
-              <span className="availability-dot" />
-              Open to Werkstudent opportunities
-              <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
           </figure>
           <a href="#about" className="scroll-cue">
             <ArrowDown size={20} />
@@ -238,8 +253,8 @@ export default function Portfolio() {
               </div>
               <div className="portrait-screen">
                 <Image
-                  src="/arjun-profile.jpg"
-                  alt="Arjun Rawat"
+                  src="/arjun-professional.webp"
+                  alt="Arjun Rawat wearing a light suit"
                   fill
                   sizes="(max-width: 760px) 90vw, 360px"
                   className="portrait-photo"

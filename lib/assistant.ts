@@ -74,7 +74,12 @@ export const knowledge = [
   },
   {
     keywords: ["projects", "built", "portfolio"],
-    text: projects.map((p) => `${p.title}: ${p.description}`).join("\n\n"),
+    text: projects
+      .map(
+        (p) =>
+          `${p.title}: ${p.description} Arjun's contribution: ${p.contribution}`,
+      )
+      .join("\n\n"),
   },
   ...projects.map((p) => ({
     keywords: [
@@ -84,7 +89,7 @@ export const knowledge = [
         .split(/[^a-z]+/)
         .filter((s) => s.length > 4),
     ],
-    text: `${p.title}\n\n${p.overview}\n\nTools: ${p.tech.join(", ")}. ${p.link ? `Source: ${p.link}` : "A public repository is not linked yet."}`,
+    text: `${p.title}\n\nProblem: ${p.problem}\n\nArjun's contribution: ${p.contribution}\n\nResult: ${p.result}\n\n${p.overview}\n\nTools: ${p.tech.join(", ")}. ${p.link ? `Source: ${p.link}` : "A public repository is not linked yet."}`,
   })),
 ];
 export function answerFromPortfolio(question: string) {
